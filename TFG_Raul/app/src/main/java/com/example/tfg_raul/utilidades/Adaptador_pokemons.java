@@ -1,6 +1,7 @@
 package com.example.tfg_raul.utilidades;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,8 @@ public class Adaptador_pokemons extends RecyclerView.Adapter<Adaptador_pokemons.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView nombre;
-        TextView tipo1;
-        TextView tipo2;
+        ImageView tipo1;
+        ImageView tipo2;
         ImageView imagen;
 
         public ViewHolder(@NonNull View itemView) {
@@ -69,8 +70,8 @@ public class Adaptador_pokemons extends RecyclerView.Adapter<Adaptador_pokemons.
 
         public void mostrarElementos(Pokemon p){
             nombre.setText(p.getNombre());
-            tipo1.setText(p.getTipo1());
-            tipo2.setText(p.getTipo2());
+            Glide.with(contexto).load(p.getTipo1()).into(tipo1);
+            Glide.with(contexto).load(p.getTipo2()).into(tipo2);
             Glide.with(contexto).load(p.getImagen()).into(imagen);
         }
     }

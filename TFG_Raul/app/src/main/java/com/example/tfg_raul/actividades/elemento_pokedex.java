@@ -33,8 +33,9 @@ public class elemento_pokedex extends AppCompatActivity {
         setContentView(R.layout.activity_elemento_pokedex);
         ImageView imagen= findViewById(R.id.imagen_poke_unico);
         TextView nombre= findViewById(R.id.nombre_poke_unico);
-        TextView tipo1= findViewById(R.id.tipo1_poke_unico);
-        TextView tipo2= findViewById(R.id.tipo2_poke_unico);
+        ImageView tipo1= findViewById(R.id.tipo1_poke_unico);
+        ImageView tipo2= findViewById(R.id.tipo2_poke_unico);
+        String tipo1TXT="", tipo2TXT="";
         TextView descripcion= findViewById(R.id.descripcion_poke_unico);
         TextView peso= findViewById(R.id.peso_unico_poke);
         TextView tamaño= findViewById(R.id.tamño_unico_pokemon);
@@ -55,13 +56,10 @@ public class elemento_pokedex extends AppCompatActivity {
 
         Glide.with(this).load(elegido.getImagen()).into(imagen);
         nombre.setText(elegido.getNombre());
-        tipo1.setText(elegido.getTipo1());
-        if(elegido.getTipo2()!=""){
-            tipo2.setText(elegido.getTipo2());
-        }
-        else{
-            tipo2.setText("");
-        }
+        tipo1TXT=elegido.getTipo1();
+        tipo2TXT=elegido.getTipo2();
+        Glide.with(this).load(tipo1TXT).into(tipo1);
+        Glide.with(this).load(tipo2TXT).into(tipo2);
         descripcion.setText(elegido.getDescripcion());
         peso.setText(String.valueOf(elegido.getPeso()));
         tamaño.setText(String.valueOf(elegido.getTamaño()));

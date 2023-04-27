@@ -27,39 +27,41 @@
         android:textStyle="bold"
         android:textColor = "?android:textColorPrimary"
         android:textSize="23dp"
-        android:layout_marginTop="25dp"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/imagen_poke_unico">
     </TextView>
 
-    <TextView
-        android:id="@+id/tipo1_poke_unico"
+    <LinearLayout
+        android:id="@+id/layout_tipos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tipo1"
-        android:textStyle="bold"
-        android:textColor = "?android:textColorPrimary"
-        android:textSize="20dp"
+        android:orientation="vertical"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="120dp"
+        android:layout_marginLeft="130dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_poke_unico">
-    </TextView>
 
-    <TextView
-        android:id="@+id/tipo2_poke_unico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tipo2"
-        android:textStyle="bold"
-        android:textColor = "?android:textColorPrimary"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipo1_poke_unico">
-    </TextView>
+        <ImageView
+            android:id="@+id/tipo1_poke_unico"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ninguno">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/tipo2_poke_unico"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ninguno">
+        </ImageView>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/titulo_descripcion"
@@ -69,8 +71,9 @@
         android:textColor = "?android:textColorPrimary"
         android:textStyle="bold"
         android:textSize="20dp"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagen_poke_unico">
     </TextView>
@@ -78,10 +81,11 @@
     <TextView
         android:id="@+id/descripcion_poke_unico"
         android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:text="Esta será la descripción del pokemon"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="16dp"
+        android:fontFamily="@font/roboto_condensed"
         android:background="@drawable/borde_listview"
         android:textAlignment="center"
         android:layout_marginTop="10dp"
@@ -97,6 +101,7 @@
         android:text="PESO"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:textColor = "?android:textColorPrimary"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
@@ -111,6 +116,7 @@
         android:text="0.00"
         android:textSize="20dp"
         android:textColor = "?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:layout_marginLeft="65dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +130,7 @@
         android:text="TAMAÑO"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:textColor = "?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:layout_marginRight="60dp"
@@ -137,6 +144,7 @@
         android:layout_height="wrap_content"
         android:text="0.00"
         android:textSize="20dp"
+        android:fontFamily="@font/roboto_condensed_bold"
         android:textColor = "?android:textColorPrimary"
         android:layout_marginTop="10dp"
         android:layout_marginRight="80dp"
@@ -150,7 +158,7 @@
         android:layout_height="wrap_content"
         android:text="Salir"
         android:backgroundTint="#2547B1"
-        android:textColor = "@color/white"
+        android:textColor="@color/white"
         android:layout_marginBottom="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

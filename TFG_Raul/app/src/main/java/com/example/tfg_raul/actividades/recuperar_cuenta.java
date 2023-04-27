@@ -89,6 +89,12 @@ public class recuperar_cuenta extends AppCompatActivity {
                             documento.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Snackbar.make(vista, "Se te enviará un correo electrónico con tus datos, comprueba tu bandeja de entrada", Snackbar.LENGTH_INDEFINITE).setAction("Aceptar", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                        }
+                                    }).show();
                                     nombre= documentSnapshot.getString("nombre");
                                     correo= documentSnapshot.getString("correo");
                                     contraseña= documentSnapshot.getString("contraseña");

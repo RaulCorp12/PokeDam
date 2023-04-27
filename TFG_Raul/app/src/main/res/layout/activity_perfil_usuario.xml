@@ -26,7 +26,6 @@
         android:layout_marginTop="20dp"
         android:text="PERFIL DE USUARIO"
         android:textSize="28dp"
-        android:textStyle="bold"
         android:textColor="?android:textColorPrimary"
         android:fontFamily="@font/roboto_condensed_bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +49,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_perfil_nombre"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         app:boxBackgroundColor="@android:color/transparent"
@@ -63,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19dp"
+            android:editable="false"
             android:textColor="?android:textColorPrimary"
             android:fontFamily="@font/roboto_condensed">
         </com.google.android.material.textfield.TextInputEditText>
@@ -72,13 +72,12 @@
 
     <TextView
         android:id="@+id/titulo_correo"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:text="  Correo electrónico"
         android:textSize="20dp"
-        android:textStyle="bold"
         android:textColor="?android:textColorPrimary"
         android:fontFamily="@font/roboto_condensed_bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +86,8 @@
     
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_perfil_correo"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         app:boxBackgroundColor="@android:color/transparent"
@@ -100,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19dp"
+            android:editable="false"
             android:fontFamily="@font/roboto_condensed"
             android:textColor="?android:textColorPrimary">
         </com.google.android.material.textfield.TextInputEditText>
@@ -108,13 +108,12 @@
 
     <TextView
         android:id="@+id/titulo_telefono"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="30dp"
         android:text="  Número de teléfono"
         android:textSize="20dp"
-        android:textStyle="bold"
         android:textColor="?android:textColorPrimary"
         android:fontFamily="@font/roboto_condensed_bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,8 +122,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_perfil_telefono"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         app:boxBackgroundColor="@android:color/transparent"
@@ -136,6 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19dp"
+            android:editable="false"
             android:fontFamily="@font/roboto_condensed"
             android:textColor="?android:textColorPrimary">
         </com.google.android.material.textfield.TextInputEditText>
@@ -149,6 +149,7 @@
         android:layout_marginTop="30dp"
         android:text="Volver al inicio"
         android:backgroundTint="#2547B1"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_perfil_telefono">
