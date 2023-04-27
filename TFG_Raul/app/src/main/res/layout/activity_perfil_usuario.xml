@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".actividades.perfil_usuario"
+    android:background="@drawable/fondo"
+    android:id="@+id/layout_perfil">
+
+    <ImageView
+        android:id="@+id/logo_usuario"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/poke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/titulo_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="PERFIL DE USUARIO"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_usuario">
+    </TextView>
+
+    <TextView
+        android:id="@+id/titulo_nombre"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="  Nombre de usuario"
+        android:textSize="20dp"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_perfil">
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_perfil_nombre"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_nombre">
+        
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contenido_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:textColor="?android:textColorPrimary"
+            android:fontFamily="@font/roboto_condensed">
+        </com.google.android.material.textfield.TextInputEditText>
+        
+        
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/titulo_correo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:text="  Correo electrónico"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_perfil_nombre">
+    </TextView>
+    
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_perfil_correo"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_correo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contenido_correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:fontFamily="@font/roboto_condensed"
+            android:textColor="?android:textColorPrimary">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/titulo_telefono"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:text="  Número de teléfono"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_perfil_correo">
+    </TextView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_perfil_telefono"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_telefono">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contenido_telefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:fontFamily="@font/roboto_condensed"
+            android:textColor="?android:textColorPrimary">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/salida_pefil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Volver al inicio"
+        android:backgroundTint="#2547B1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_perfil_telefono">
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

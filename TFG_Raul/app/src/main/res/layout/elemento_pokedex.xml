@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:id="@+id/elemento_pokedex">
+
+    <ImageView
+        android:id="@+id/imagen_elemento"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/fondo"
+        android:scaleType="fitCenter">
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/layout_elemento"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:background="@drawable/fondo">
+
+        <TextView
+            android:id="@+id/pokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor = "?android:textColorPrimary"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tipo1"
+                android:text="tipo1"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor = "?android:textColorPrimary"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tipo2"
+                android:text="tipo2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor = "?android:textColorPrimary"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

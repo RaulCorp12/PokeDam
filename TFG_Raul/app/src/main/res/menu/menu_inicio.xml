@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/boton_menu_inicio"
+        android:enabled="true"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Inicio"/>
+    <item
+        android:id="@+id/boton_menu_pokedex"
+        android:enabled="true"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Pokedex"/>
+    <item
+        android:id="@+id/boton_menu_guia"
+        android:enabled="true"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Guias" />
+    <item
+        android:id="@+id/boton_menu_caza"
+        android:enabled="true"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Shiny hunt" />
+    <item
+        android:id="@+id/boton_menu_config"
+        android:enabled="true"
+        android:iconTint="@color/white"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Configuración"/>
+
+</menu>

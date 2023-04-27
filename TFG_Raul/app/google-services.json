@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "780818462017",
+    "project_id": "pokedam-dba0a",
+    "storage_bucket": "pokedam-dba0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780818462017:android:c1f030c4cfdeda06ba5dc0",
+        "android_client_info": {
+          "package_name": "com.example.tfg_raul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780818462017-d5pvbftk7rgv6t1pgqsi42ncst1t5nj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwhYRrIZ7goGkUr86cIgD8bN_3I_jgTnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780818462017-d5pvbftk7rgv6t1pgqsi42ncst1t5nj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
