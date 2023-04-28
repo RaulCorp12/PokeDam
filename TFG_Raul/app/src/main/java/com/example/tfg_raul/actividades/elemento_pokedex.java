@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,10 +36,12 @@ public class elemento_pokedex extends AppCompatActivity {
         TextView nombre= findViewById(R.id.nombre_poke_unico);
         ImageView tipo1= findViewById(R.id.tipo1_poke_unico);
         ImageView tipo2= findViewById(R.id.tipo2_poke_unico);
+        ImageView modelo= findViewById(R.id.modelo_poke);
+        ImageView modelo_variocolor= findViewById(R.id.modelo_poke_variocolor);
         String tipo1TXT="", tipo2TXT="";
         TextView descripcion= findViewById(R.id.descripcion_poke_unico);
         TextView peso= findViewById(R.id.peso_unico_poke);
-        TextView tamaño= findViewById(R.id.tamño_unico_pokemon);
+        TextView tamaño= findViewById(R.id.tamaño_unico_pokemon);
         Button salir= findViewById(R.id.salida_pokemon_unico);
         elemento = findViewById(R.id.layout_elemento_pokedex);
 
@@ -61,8 +64,10 @@ public class elemento_pokedex extends AppCompatActivity {
         Glide.with(this).load(tipo1TXT).into(tipo1);
         Glide.with(this).load(tipo2TXT).into(tipo2);
         descripcion.setText(elegido.getDescripcion());
-        peso.setText(String.valueOf(elegido.getPeso()));
-        tamaño.setText(String.valueOf(elegido.getTamaño()));
+        peso.setText(String.valueOf(elegido.getPeso())+"Kg");
+        tamaño.setText(String.valueOf(elegido.getTamaño())+"M");
+        Glide.with(this).load(elegido.getModelo()).into(modelo);
+        Glide.with(this).load(elegido.getModeloVariocolor()).into(modelo_variocolor);
 
         salir.setOnClickListener(new View.OnClickListener() {
             @Override

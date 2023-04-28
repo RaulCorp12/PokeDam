@@ -73,7 +73,9 @@ public class lista_pokedex extends AppCompatActivity {
                         String descrip= doc.getString("Descripcion");
                         String imagen= doc.getString("Imagen");
                         String shiny= doc.getString("Imagen_variocolor");
-                        Pokemon poke= new Pokemon(nombre,descrip,tipo1,tipo2,altura,peso,imagen,shiny);
+                        String modelo= doc.getString("modelo");
+                        String variocolor= doc.getString("modeloVariocolor");
+                        Pokemon poke= new Pokemon(nombre,descrip,tipo1,tipo2,altura,peso,imagen,shiny,modelo,variocolor);
                         listado_pokes.add(poke);
                     }
                     adaptadorPokemons = new Adaptador_pokemons(R.id.elemento_pokedex,getApplicationContext(),listado_pokes);

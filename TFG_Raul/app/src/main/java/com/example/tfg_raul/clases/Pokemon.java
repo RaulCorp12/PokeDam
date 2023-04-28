@@ -12,8 +12,10 @@ public class Pokemon implements Serializable {
     public Double peso;
     public String imagen;
     public String imagenShiny;
+    public String modelo;
+    public String modeloVariocolor;
 
-    public Pokemon(String nombre, String descripcion, String tipo1, String tipo2, Double tamaño, Double peso, String imagen, String imagenShiny) {
+    public Pokemon(String nombre, String descripcion, String tipo1, String tipo2, Double tamaño, Double peso, String imagen, String imagenShiny, String modelo, String modeloVariocolor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo1 = tipo1;
@@ -22,6 +24,8 @@ public class Pokemon implements Serializable {
         this.peso = peso;
         this.imagen = imagen;
         this.imagenShiny= imagenShiny;
+        this.modelo= modelo;
+        this.modeloVariocolor= modeloVariocolor;
     }
 
     public Pokemon() {
@@ -90,4 +94,12 @@ public class Pokemon implements Serializable {
     public String getImagenShiny() {return imagenShiny;}
 
     public void setImagenShiny(String imagenShiny) {this.imagenShiny = imagenShiny;}
+
+    public String getModelo() {return modelo;}
+
+    public void setModelo(String modelo) {this.modelo = modelo;}
+
+    public String getModeloVariocolor() {return modeloVariocolor;}
+
+    public void setModeloVariocolor(String modeloVariocolor) {this.modeloVariocolor = modeloVariocolor;}
 }
