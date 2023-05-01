@@ -6,13 +6,14 @@
     android:layout_marginTop="10dp"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
+    android:background="@drawable/borde_listview"
     android:id="@+id/elemento_pokedex">
 
     <ImageView
         android:id="@+id/imagen_elemento"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:background="@drawable/fondo"
+
         android:scaleType="fitCenter">
     </ImageView>
 
@@ -20,8 +21,8 @@
         android:id="@+id/layout_elemento"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:orientation="horizontal"
-        android:background="@drawable/fondo">
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/pokemon"

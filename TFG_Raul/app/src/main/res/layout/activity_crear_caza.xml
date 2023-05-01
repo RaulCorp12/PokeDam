@@ -1,47 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".actividades.nueva_caza"
+    tools:context=".crear_caza"
     android:background="@drawable/fondo"
-    android:id="@+id/layout_cazas">
+    android:id="@+id/layout_crear_cazas">
 
-    <ImageButton
-        android:id="@+id/boton_nueva_caza"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/baseline_add_to_photos_24"
-        android:background="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageButton>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listado_cazas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="57dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menu_caza"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/titulo_crear_caza"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu_inicio"
-        app:itemIconTint="?android:textColorPrimary"
-        app:itemTextColor="?android:textColorPrimary"
+        android:text="NUEVA CAZA"
+        android:textSize="28dp"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/titulo_elegir_pokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar al Pokémon"
+        android:textSize="18dp"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_crear_caza">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/selector_pokemon"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_crear_caza">
+    </Spinner>
+
+    <ImageView
+        android:id="@+id/imagen_pokemon_caza"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/poke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_elegir_pokemon">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/titulo_elegir_metodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona el método"
+        android:textSize="18dp"
+        android:textColor="?android:textColorPrimary"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_elegir_pokemon">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/selector_método"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selector_pokemon">
+    </Spinner>
+
+    <Button
+        android:id="@+id/boton_crear_caza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:text="Crear nueva caza"
+        android:backgroundTint="#2547B1"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selector_método">
+    </Button>
+
+    <Button
+        android:id="@+id/boton_salir_caza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="cancelar"
+        android:backgroundTint="#2547B1"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boton_crear_caza">
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

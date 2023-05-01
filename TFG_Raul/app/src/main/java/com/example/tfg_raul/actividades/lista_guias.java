@@ -102,7 +102,7 @@ public class lista_guias extends AppCompatActivity {
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(lista_guias.this, nueva_caza.class);
+                    Intent cambio= new Intent(lista_guias.this, lista_cazas.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }

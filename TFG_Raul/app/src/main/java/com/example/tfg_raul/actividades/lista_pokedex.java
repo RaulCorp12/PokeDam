@@ -115,7 +115,7 @@ public class lista_pokedex extends AppCompatActivity {
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(lista_pokedex.this, nueva_caza.class);
+                    Intent cambio= new Intent(lista_pokedex.this, lista_cazas.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }

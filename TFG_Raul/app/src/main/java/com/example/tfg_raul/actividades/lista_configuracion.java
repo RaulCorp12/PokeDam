@@ -85,7 +85,7 @@ public class lista_configuracion extends AppCompatActivity {
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(lista_configuracion.this, nueva_caza.class);
+                    Intent cambio= new Intent(lista_configuracion.this, lista_cazas.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
