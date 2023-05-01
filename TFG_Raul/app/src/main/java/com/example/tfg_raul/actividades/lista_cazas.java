@@ -48,7 +48,9 @@ public class lista_cazas extends AppCompatActivity {
         nueva_caza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent cambio= new Intent(lista_cazas.this,crear_caza.class);
+                cambio.putExtra("id",id_usu);
+                startActivity(cambio);
             }
         });
 

@@ -1,8 +1,9 @@
-package com.example.tfg_raul;
+package com.example.tfg_raul.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.example.tfg_raul.actividades.lista_cazas;
+
+import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class crear_caza extends AppCompatActivity {
             setTheme(R.style.Theme_TFG_Raul);
         }
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_crear_caza);
         Button crear_caza= findViewById(R.id.boton_crear_caza);
         Button cancelar= findViewById(R.id.boton_salir_caza);
@@ -34,6 +36,9 @@ public class crear_caza extends AppCompatActivity {
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo));
         }
 
+        Bundle datos= getIntent().getExtras();
+        String id_usu= datos.getString("id");
+
         crear_caza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +49,8 @@ public class crear_caza extends AppCompatActivity {
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio= new Intent(com.example.tfg_raul.crear_caza.this, lista_cazas.class);
+                Intent cambio= new Intent(com.example.tfg_raul.actividades.crear_caza.this, lista_cazas.class);
+                cambio.putExtra("id",id_usu);
                 startActivity(cambio);
             }
         });
