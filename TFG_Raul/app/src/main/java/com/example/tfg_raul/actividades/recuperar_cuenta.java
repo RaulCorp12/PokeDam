@@ -142,8 +142,8 @@ public class recuperar_cuenta extends AppCompatActivity {
                 mensaje.setFrom(new InternetAddress(remitente));
                 mensaje.setSubject("Recuperación de datos para "+correo);
                 mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(correo.trim()));
-                mensaje.setContent("Solicitaste tus datos de inicio de sesión\nCorreo electrónico: "+correo+"\nContraseña: "+
-                        contraseña+"\nSi no enviaste la petición simplemente ignora este correo","text/html; charset=utf-8");
+                mensaje.setContent("Solicitaste tus datos de inicio de sesión<br>Correo electrónico: "+correo+"<br>Contraseña: "+
+                        contraseña+"<br>Si no enviaste la petición simplemente ignora este correo","text/html; charset=utf-8");
                 Transport.send(mensaje);
             }
         } catch (AddressException e) {
