@@ -18,7 +18,6 @@ import com.example.tfg_raul.clases.Pokemon;
 import java.util.List;
 
 public class Adaptador_pokemons extends RecyclerView.Adapter<Adaptador_pokemons.ViewHolder> {
-
     private int layout;
     private Context contexto;
     private View.OnClickListener onClickListener;

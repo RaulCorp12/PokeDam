@@ -3,19 +3,38 @@ package com.example.tfg_raul.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import com.example.tfg_raul.R;
+import com.example.tfg_raul.clases.Caza;
+import com.example.tfg_raul.utilidades.Adaptador_cazas;
+import com.example.tfg_raul.utilidades.Adaptador_pokemons;
 import com.example.tfg_raul.utilidades.Preferencias;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class lista_cazas extends AppCompatActivity {
-
     Preferencias preferencia=null;
+    Adaptador_cazas adaptadorCazas;
+    RecyclerView recycle;
+    RecyclerView.LayoutManager layoutManager;
+    FirebaseFirestore firebase= FirebaseFirestore.getInstance();
+    CollectionReference collectionReference = firebase.collection("Caza");
     private ConstraintLayout cazas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +51,7 @@ public class lista_cazas extends AppCompatActivity {
         BottomNavigationView menu= findViewById(R.id.menu_caza);
         cazas = findViewById(R.id.layout_cazas);
         ImageButton nueva_caza= findViewById(R.id.boton_nueva_caza);
+        List<Caza> listado_cazas= new ArrayList<Caza>();
 
         if(preferencia.cargar_modo_noche()==true){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
@@ -44,7 +64,41 @@ public class lista_cazas extends AppCompatActivity {
 
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
-
+        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(DocumentSnapshot doc: task.getResult()){
+                        String nombre= doc.getString("nombre_pokemon");
+                        String imagen= doc.getString("imagen");
+                        Long intentos= (Long) doc.get("intentos");
+                        String id_usuario= doc.getString("id_usuario");
+                        String tiempo= doc.getString("tiempo");
+                        Caza caza= new Caza(nombre,imagen,tiempo,intentos,id_usuario);
+                        if(caza.id_usuario.matches(id_usu)){
+                            listado_cazas.add(caza);
+                        }
+                    }
+                    System.out.println(listado_cazas.size());
+                    adaptadorCazas= new Adaptador_cazas(R.id.elemento_caza, getApplicationContext(), listado_cazas);
+                    adaptadorCazas.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int posicion= recycle.getChildAdapterPosition(view);
+                            Caza elegida= listado_cazas.get(posicion);
+                            Intent envio= new Intent(lista_cazas.this, elemento_pokedex.class);
+                            envio.putExtra("id",id_usu);
+                            envio.putExtra("caza",elegida);
+                            startActivity(envio);
+                        }
+                    });
+                    recycle= findViewById(R.id.listado_cazas);
+                    recycle.setAdapter(adaptadorCazas);
+                    layoutManager= new LinearLayoutManager(getApplicationContext());
+                    recycle.setLayoutManager(layoutManager);
+                }
+            }
+        });
         nueva_caza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
