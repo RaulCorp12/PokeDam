@@ -84,7 +84,7 @@ public class lista_cazas extends AppCompatActivity {
                         public void onClick(View view) {
                             int posicion= recycle.getChildAdapterPosition(view);
                             Caza elegida= listado_cazas.get(posicion);
-                            Intent envio= new Intent(lista_cazas.this, elemento_pokedex.class);
+                            Intent envio= new Intent(lista_cazas.this, elemento_caza.class);
                             envio.putExtra("id",id_usu);
                             envio.putExtra("caza",elegida);
                             startActivity(envio);

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 
-public class cazar_pokemon extends AppCompatActivity {
+public class elemento_caza extends AppCompatActivity {
 
     Preferencias preferencia=null;
     private ConstraintLayout cazas;
@@ -21,7 +21,7 @@ public class cazar_pokemon extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        setContentView(R.layout.activity_cazar_pokemon);
+        setContentView(R.layout.activity_elemento_caza);
         cazas = findViewById(R.id.layout_cazar_pokemon);
         if(preferencia.cargar_modo_noche()==true){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
