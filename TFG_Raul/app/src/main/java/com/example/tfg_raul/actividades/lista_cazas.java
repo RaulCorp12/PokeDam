@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,7 +13,6 @@ import android.widget.ImageButton;
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.clases.Caza;
 import com.example.tfg_raul.utilidades.Adaptador_cazas;
-import com.example.tfg_raul.utilidades.Adaptador_pokemons;
 import com.example.tfg_raul.utilidades.Preferencias;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +22,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +71,8 @@ public class lista_cazas extends AppCompatActivity {
                         Long intentos= (Long) doc.get("intentos");
                         String id_usuario= doc.getString("id_usuario");
                         String tiempo= doc.getString("tiempo");
-                        Caza caza= new Caza(nombre,imagen,tiempo,intentos,id_usuario);
+                        String metodo= doc.getString("metodo");
+                        Caza caza= new Caza(nombre,imagen,tiempo,intentos,id_usuario,metodo);
                         if(caza.id_usuario.matches(id_usu)){
                             listado_cazas.add(caza);
                         }

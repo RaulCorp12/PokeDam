@@ -8,15 +8,25 @@ public class Caza implements Serializable {
     public String tiempo;
     public Long intentos;
     public String id_usuario;
-    public Caza(String nombre, String imagen, String tiempo, Long intentos, String id_usuario) {
+    public String metodo;
+
+    public Caza(String nombre, String imagen, String tiempo, Long intentos, String id_usuario, String metodo) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.tiempo = tiempo;
         this.intentos = intentos;
         this.id_usuario = id_usuario;
+        this.metodo = metodo;
     }
+
     public Caza() {
     }
+
+    @Override
+    public String toString(){
+        return nombre+"/"+imagen+"/"+tiempo+"/"+intentos+"/"+id_usuario+"/"+metodo;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -55,5 +65,13 @@ public class Caza implements Serializable {
 
     public void setId_usuario(String id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
     }
 }

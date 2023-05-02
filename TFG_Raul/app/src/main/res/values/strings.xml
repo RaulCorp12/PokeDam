@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PokeDam</string>
+
+    <string-array name="metodos">
+        <item>Encuentros</item>
+        <item>Pesca</item>
+        <item>Cadenas</item>
+    </string-array>
 </resources>
