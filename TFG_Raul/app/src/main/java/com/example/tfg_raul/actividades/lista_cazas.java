@@ -73,11 +73,10 @@ public class lista_cazas extends AppCompatActivity {
                         String tiempo= doc.getString("tiempo");
                         String metodo= doc.getString("metodo");
                         Caza caza= new Caza(nombre,imagen,tiempo,intentos,id_usuario,metodo);
-                        if(caza.id_usuario.matches(id_usu)){
+                        if(caza.getId_usuario().matches(id_usu)){
                             listado_cazas.add(caza);
                         }
                     }
-                    System.out.println(listado_cazas.size());
                     adaptadorCazas= new Adaptador_cazas(R.id.elemento_caza, getApplicationContext(), listado_cazas);
                     adaptadorCazas.setOnClickListener(new View.OnClickListener() {
                         @Override
