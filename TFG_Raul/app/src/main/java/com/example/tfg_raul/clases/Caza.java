@@ -4,14 +4,16 @@ import java.io.Serializable;
 
 public class Caza implements Serializable {
     public String nombre;
+    public String modelo;
     public String imagen;
     public String tiempo;
     public Long intentos;
     public String id_usuario;
     public String metodo;
 
-    public Caza(String nombre, String imagen, String tiempo, Long intentos, String id_usuario, String metodo) {
+    public Caza(String nombre, String modelo, String imagen, String tiempo, Long intentos, String id_usuario, String metodo) {
         this.nombre = nombre;
+        this.modelo = modelo;
         this.imagen = imagen;
         this.tiempo = tiempo;
         this.intentos = intentos;
@@ -24,7 +26,7 @@ public class Caza implements Serializable {
 
     @Override
     public String toString(){
-        return nombre+"/"+imagen+"/"+tiempo+"/"+intentos+"/"+id_usuario+"/"+metodo;
+        return nombre+"/"+ modelo +"/"+tiempo+"/"+intentos+"/"+id_usuario+"/"+metodo;
     }
 
     public String getNombre() {
@@ -35,12 +37,12 @@ public class Caza implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public String getTiempo() {
@@ -73,5 +75,13 @@ public class Caza implements Serializable {
 
     public void setMetodo(String metodo) {
         this.metodo = metodo;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

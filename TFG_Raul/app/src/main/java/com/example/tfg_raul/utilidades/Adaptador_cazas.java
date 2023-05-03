@@ -55,7 +55,6 @@ public class Adaptador_cazas extends RecyclerView.Adapter<Adaptador_cazas.ViewHo
         }
         public void mostrarElementos(Caza c){
             nombre.setText(c.getNombre());
-            System.out.println(c.getImagen());
             Glide.with(contexto).load(c.getImagen()).into(imagen);
             tiempo.setText(c.getTiempo());
             intentos.setText(String.valueOf(c.getIntentos()));

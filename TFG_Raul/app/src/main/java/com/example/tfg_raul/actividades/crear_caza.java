@@ -82,10 +82,10 @@ public class crear_caza extends AppCompatActivity {
                         Double peso= doc.getDouble("Peso");
                         String descrip= doc.getString("Descripcion");
                         String imagen= doc.getString("Imagen");
-                        String shiny= doc.getString("Imagen_variocolor");
+                        String imagenVariocolor= doc.getString("Imagen_variocolor");
                         String modelo= doc.getString("modelo");
-                        String variocolor= doc.getString("modeloVariocolor");
-                        Pokemon poke= new Pokemon(nombre,descrip,tipo1,tipo2,altura,peso,imagen,shiny,modelo,variocolor);
+                        String modeloVariocolor= doc.getString("modeloVariocolor");
+                        Pokemon poke= new Pokemon(nombre,descrip,tipo1,tipo2,altura,peso,imagen,imagenVariocolor,modelo,modeloVariocolor);
                         listado_pokes.add(poke);
                     }
                     nombres.add(0,"Seleccionar");
@@ -104,8 +104,9 @@ public class crear_caza extends AppCompatActivity {
                             else{
                                 nueva.setNombre(parent.getItemAtPosition(position).toString());
                                 nueva.setIntentos(0L);
-                                nueva.setTiempo("0:0:0");
-                                nueva.setImagen(listado_pokes.get(position-1).getImagen());
+                                nueva.setTiempo("00:00:00");
+                                nueva.setModelo(listado_pokes.get(position-1).getModeloVariocolor());
+                                nueva.setImagen(listado_pokes.get(position-1).getImagenShiny());
                                 Glide.with(cazas.getContext()).load(nueva.getImagen()).into(imagen);
                                 Snackbar.make(view,"Seleccionaste "+parent.getItemAtPosition(position), Snackbar.LENGTH_LONG).show();
                             }
@@ -137,6 +138,7 @@ public class crear_caza extends AppCompatActivity {
                     Map<String, Object> caza= new HashMap<>();
                     caza.put("nombre_pokemon",nueva.getNombre());
                     caza.put("imagen",nueva.getImagen());
+                    caza.put("modelo",nueva.getModelo());
                     caza.put("id_usuario",nueva.getId_usuario());
                     caza.put("intentos", nueva.getIntentos());
                     caza.put("metodo", nueva.getMetodo());

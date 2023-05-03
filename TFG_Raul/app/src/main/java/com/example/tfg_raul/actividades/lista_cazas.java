@@ -52,11 +52,11 @@ public class lista_cazas extends AppCompatActivity {
 
         if(preferencia.cargar_modo_noche()==true){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
-            nueva_caza.setImageResource(R.drawable.baseline_add_to_photos_24);
+            nueva_caza.setImageResource(R.drawable.ic_baseline_add_to_photos_white_24);
         }
         else {
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo));
-            nueva_caza.setImageResource(R.drawable.ic_baseline_add_to_photos_white_24);
+            nueva_caza.setImageResource(R.drawable.baseline_add_to_photos_24);
         }
 
         Bundle datos= getIntent().getExtras();
@@ -68,11 +68,12 @@ public class lista_cazas extends AppCompatActivity {
                     for(DocumentSnapshot doc: task.getResult()){
                         String nombre= doc.getString("nombre_pokemon");
                         String imagen= doc.getString("imagen");
+                        String modelo= doc.getString("modelo");
                         Long intentos= (Long) doc.get("intentos");
                         String id_usuario= doc.getString("id_usuario");
                         String tiempo= doc.getString("tiempo");
                         String metodo= doc.getString("metodo");
-                        Caza caza= new Caza(nombre,imagen,tiempo,intentos,id_usuario,metodo);
+                        Caza caza= new Caza(nombre,modelo,imagen,tiempo,intentos,id_usuario,metodo);
                         if(caza.getId_usuario().matches(id_usu)){
                             listado_cazas.add(caza);
                         }
