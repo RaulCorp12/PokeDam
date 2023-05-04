@@ -100,7 +100,7 @@ public class inicio_sesion extends AppCompatActivity {
     public void recuperarId(String correo_recup){
         View vista= findViewById(R.id.recuperar_cuenta_layout);
         CollectionReference collectionReference = firebase.collection("Usuario");
-        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.toString());
+        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup);
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

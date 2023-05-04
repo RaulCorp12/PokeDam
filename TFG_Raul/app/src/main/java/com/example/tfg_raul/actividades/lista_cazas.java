@@ -73,7 +73,8 @@ public class lista_cazas extends AppCompatActivity {
                         String id_usuario= doc.getString("id_usuario");
                         String tiempo= doc.getString("tiempo");
                         String metodo= doc.getString("metodo");
-                        Caza caza= new Caza(nombre,modelo,imagen,tiempo,intentos,id_usuario,metodo);
+                        String id_caza= doc.getString("id_caza");
+                        Caza caza= new Caza(nombre,modelo,imagen,tiempo,intentos,id_usuario,metodo, id_caza);
                         if(caza.getId_usuario().matches(id_usu)){
                             listado_cazas.add(caza);
                         }
@@ -95,6 +96,7 @@ public class lista_cazas extends AppCompatActivity {
                     layoutManager= new LinearLayoutManager(getApplicationContext());
                     recycle.setLayoutManager(layoutManager);
                 }
+
             }
         });
         nueva_caza.setOnClickListener(new View.OnClickListener() {

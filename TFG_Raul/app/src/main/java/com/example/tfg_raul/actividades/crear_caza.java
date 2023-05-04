@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -69,7 +70,6 @@ public class crear_caza extends AppCompatActivity {
 
         Caza nueva= new Caza();
         nueva.setId_usuario(id_usu);
-
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -107,6 +107,7 @@ public class crear_caza extends AppCompatActivity {
                                 nueva.setTiempo("00:00:00");
                                 nueva.setModelo(listado_pokes.get(position-1).getModeloVariocolor());
                                 nueva.setImagen(listado_pokes.get(position-1).getImagenShiny());
+                                nueva.setId_caza(generarIdCaza());
                                 Glide.with(cazas.getContext()).load(nueva.getImagen()).into(imagen);
                                 Snackbar.make(view,"Seleccionaste "+parent.getItemAtPosition(position), Snackbar.LENGTH_LONG).show();
                             }
@@ -143,6 +144,7 @@ public class crear_caza extends AppCompatActivity {
                     caza.put("intentos", nueva.getIntentos());
                     caza.put("metodo", nueva.getMetodo());
                     caza.put("tiempo",nueva.getTiempo());
+                    caza.put("id_caza", nueva.getId_caza());
                     firebase.collection("Caza").add(caza)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
@@ -173,5 +175,16 @@ public class crear_caza extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
+    }
+
+    public String generarIdCaza(){
+
+        String caracteres="ABCDEFGHIJKLMÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz1234567890";
+        String id="";
+        Log.i("Mensaje", String.valueOf(caracteres.charAt(0)));
+        for(int i=0; i<8; i++){
+            id+=caracteres.charAt((int) (Math.random()*caracteres.length()));
+        }
+        return id;
     }
 }

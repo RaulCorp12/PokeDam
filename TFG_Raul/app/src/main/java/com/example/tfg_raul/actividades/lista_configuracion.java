@@ -103,7 +103,7 @@ public class lista_configuracion extends AppCompatActivity {
 
     }
     public void reinicio(String id){
-        Intent cambio= new Intent(getApplicationContext(), lista_configuracion.class);
+        Intent cambio= new Intent(lista_configuracion.this, lista_configuracion.class);
         cambio.putExtra("id",id);
         startActivity(cambio);
         finish();
