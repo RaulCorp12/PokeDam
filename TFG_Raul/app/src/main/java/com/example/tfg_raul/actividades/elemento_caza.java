@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +15,6 @@ import com.example.tfg_raul.clases.Caza;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,7 +22,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -32,16 +29,13 @@ import java.util.TimerTask;
 
 public class elemento_caza extends AppCompatActivity {
     private ConstraintLayout cazas;
-
-    FirebaseFirestore firebase= FirebaseFirestore.getInstance();
-
-    String id_docu="";
+    FirebaseFirestore firebaseID= FirebaseFirestore.getInstance();
     TextView tiempo;
     Button reanudar;
     boolean tiempoIniciado= false;
     Timer temporizador;
     TimerTask tarea;
-    Double tempo=0.0;
+    Double tempo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +63,7 @@ public class elemento_caza extends AppCompatActivity {
             cazas.setBackgroundResource(R.drawable.pesca);
         }
 
-        intentos.setText(String.valueOf(elegida.getIntentos().intValue()));
+        intentos.setText(elegida.getIntentos());
         tiempo.setText(elegida.getTiempo());
         aumentar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,21 +90,7 @@ public class elemento_caza extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                recuperarId(elegida.getId_caza().trim());
-
-                Log.i("Identificador", id_docu);
-
-                DocumentReference docuCaza= firebase.collection("Caza").document(id_docu);
-
-                Map<String, Object> actualizacion= new HashMap<>();
-                actualizacion.put("intentos",intentos.getText().toString());
-                actualizacion.put("tiempo", tiempo.getText().toString());
-                docuCaza.update(actualizacion);
-
-                Intent cambio= new Intent(elemento_caza.this, lista_cazas.class);
-                cambio.putExtra("id",id_usu);
-                startActivity(cambio);
+                actualizarDatos(elegida.getId_caza().trim(), intentos.getText().toString(), tiempo.getText().toString(), id_usu);
             }
         });
     }
@@ -121,6 +101,7 @@ public class elemento_caza extends AppCompatActivity {
     }
 
     public void iniciarTiempo(){
+        tempo= Double.valueOf(tiempo.getText().toString().substring(6,8));
         tarea= new TimerTask() {
             @Override
             public void run() {
@@ -148,23 +129,30 @@ public class elemento_caza extends AppCompatActivity {
         return String.format("%02d",horas)+":"+ String.format("%02d",minutos)+":" +String.format("%02d",segundos);
     }
 
-    public void recuperarId(String id_caza){
-        CollectionReference collectionReference = firebase.collection("Caza");
+    public void actualizarDatos(String id_caza, String intentos, String tiempo, String id_usu){
+
+        CollectionReference collectionReference = firebaseID.collection("Caza");
         Query sentencia= collectionReference.whereEqualTo("id_caza", id_caza);
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot id : task.getResult()) {
-                    DocumentReference documento= firebase.collection("Caza").document(id.getId());
+                    DocumentReference documento= firebaseID.collection("Caza").document(id.getId());
                     documento.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            id_docu = id.getId();
+                            Map<String, Object> actualizacion= new HashMap<>();
+                            actualizacion.put("intentos",intentos);
+                            actualizacion.put("tiempo", tiempo);
+                            documento.update(actualizacion);
+
+                            Intent cambio= new Intent(elemento_caza.this, lista_cazas.class);
+                            cambio.putExtra("id",id_usu);
+                            startActivity(cambio);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            id_docu="";
                         }
                     });
                 }
@@ -173,7 +161,6 @@ public class elemento_caza extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        id_docu="";
                     }
                 });
     }

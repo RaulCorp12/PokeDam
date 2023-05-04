@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

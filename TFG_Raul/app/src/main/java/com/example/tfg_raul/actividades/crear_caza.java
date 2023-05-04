@@ -103,7 +103,7 @@ public class crear_caza extends AppCompatActivity {
                             if(parent.getItemAtPosition(position).toString().matches("Seleccionar")){}
                             else{
                                 nueva.setNombre(parent.getItemAtPosition(position).toString());
-                                nueva.setIntentos(0L);
+                                nueva.setIntentos("0");
                                 nueva.setTiempo("00:00:00");
                                 nueva.setModelo(listado_pokes.get(position-1).getModeloVariocolor());
                                 nueva.setImagen(listado_pokes.get(position-1).getImagenShiny());

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

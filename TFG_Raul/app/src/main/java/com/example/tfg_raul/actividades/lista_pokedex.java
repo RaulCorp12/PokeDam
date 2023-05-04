@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Adaptador_pokemons;
 import com.example.tfg_raul.clases.Pokemon;

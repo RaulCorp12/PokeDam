@@ -69,7 +69,7 @@ public class lista_cazas extends AppCompatActivity {
                         String nombre= doc.getString("nombre_pokemon");
                         String imagen= doc.getString("imagen");
                         String modelo= doc.getString("modelo");
-                        Long intentos= (Long) doc.get("intentos");
+                        String intentos= doc.getString("intentos");
                         String id_usuario= doc.getString("id_usuario");
                         String tiempo= doc.getString("tiempo");
                         String metodo= doc.getString("metodo");

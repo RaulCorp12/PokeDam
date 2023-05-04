@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.clases.Caza;
 import java.util.List;
+
 public class Adaptador_cazas extends RecyclerView.Adapter<Adaptador_cazas.ViewHolder> {
     private int layout;
     private Context contexto;
@@ -57,7 +58,7 @@ public class Adaptador_cazas extends RecyclerView.Adapter<Adaptador_cazas.ViewHo
             nombre.setText(c.getNombre());
             Glide.with(contexto).load(c.getImagen()).into(imagen);
             tiempo.setText(c.getTiempo());
-            intentos.setText(String.valueOf(c.getIntentos()));
+            intentos.setText(c.getIntentos());
         }
     }
 }

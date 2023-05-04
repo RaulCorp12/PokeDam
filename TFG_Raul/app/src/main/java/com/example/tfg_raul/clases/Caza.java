@@ -7,13 +7,12 @@ public class Caza implements Serializable {
     public String modelo;
     public String imagen;
     public String tiempo;
-    public Long intentos;
+    public String intentos;
     public String id_usuario;
     public String metodo;
-
     public String id_caza;
 
-    public Caza(String nombre, String modelo, String imagen, String tiempo, Long intentos, String id_usuario, String metodo, String id_caza) {
+    public Caza(String nombre, String modelo, String imagen, String tiempo, String intentos, String id_usuario, String metodo, String id_caza) {
         this.nombre = nombre;
         this.modelo = modelo;
         this.imagen = imagen;
@@ -55,11 +54,11 @@ public class Caza implements Serializable {
         this.tiempo = tiempo;
     }
 
-    public Long getIntentos() {
+    public String getIntentos() {
         return intentos;
     }
 
-    public void setIntentos(Long intentos) {
+    public void setIntentos(String intentos) {
         this.intentos = intentos;
     }
 
