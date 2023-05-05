@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +62,15 @@ public class elemento_caza extends AppCompatActivity {
 
         if(elegida.getMetodo().equals("Pesca")){
             cazas.setBackgroundResource(R.drawable.pesca);
+        }
+        else if(elegida.getMetodo().equals("Encuentros")){
+            cazas.setBackgroundResource(R.drawable.encuentros);
+        }
+        else if(elegida.getMetodo().equals("Cadenas")){
+            cazas.setBackgroundResource(R.drawable.cadenas);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                intentos.setTextColor(getColor(R.color.white));
+            }
         }
 
         intentos.setText(elegida.getIntentos());
