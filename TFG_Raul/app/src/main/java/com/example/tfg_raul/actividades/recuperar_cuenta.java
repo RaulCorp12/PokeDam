@@ -78,7 +78,7 @@ public class recuperar_cuenta extends AppCompatActivity {
     public void recuperarId(String correo_recup){
         View vista= findViewById(R.id.recuperar_cuenta_layout);
         CollectionReference collectionReference = firebase.collection("Usuario");
-        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.toString());
+        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.trim());
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -102,16 +102,15 @@ public class recuperar_cuenta extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Snackbar.make(vista,"No se pudieron recuperar tus datos", Snackbar.LENGTH_LONG).show();
+                                    Snackbar.make(vista,"No se pudieron recuperar los datos", Snackbar.LENGTH_LONG).show();
                                 }
                             });
                         }
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(vista,"No se pudieron recuperar tus datos", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(vista,"No se pudieron recuperar los datos", Snackbar.LENGTH_LONG).show();
                     }
                 });
     }

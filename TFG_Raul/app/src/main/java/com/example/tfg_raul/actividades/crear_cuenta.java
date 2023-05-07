@@ -70,9 +70,14 @@ public class crear_cuenta extends AppCompatActivity {
                             if (!contraseña.getText().toString().contains(".")) {
                                 Snackbar.make(vista, "La contraseña debe contener letras en mayuscula y en minuscula, numeros y caracteres especiales", Snackbar.LENGTH_LONG).show();
                             } else {
-                                existe= recuperarId(correo.getText().toString());
-                                if(existe=false){
-                                    saveDataToDatabase(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
+                                if(contraseña.getText().toString().length()<8){
+                                    Snackbar.make(vista, "La contraseña debe de tener 8 o más caracteres y numeros en total", Snackbar.LENGTH_LONG).show();
+                                }
+                                else{
+                                    recuperarId(correo.getText().toString());
+                                    if(existe=false){
+                                        saveDataToDatabase(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
+                                    }
                                 }
                             }
                         }
@@ -85,11 +90,10 @@ public class crear_cuenta extends AppCompatActivity {
 
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         Map<String, Object> usuario= new HashMap<>();
-        usuario.put("nombre",nombre.toString());
-        usuario.put("correo",correo.toString());
-        usuario.put("contraseña",contraseña.toString());
-        usuario.put("telefono", "");
-        autenticacion.createUserWithEmailAndPassword(correo.toString(), contraseña.toString());
+        usuario.put("nombre",nombre);
+        usuario.put("correo",correo);
+        usuario.put("contraseña",contraseña);
+        autenticacion.createUserWithEmailAndPassword(correo, contraseña);
         firebase.collection("Usuario")
                 .add(usuario)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -107,10 +111,10 @@ public class crear_cuenta extends AppCompatActivity {
                 });
     }
 
-    public boolean recuperarId(String correo_recup){
+    public void recuperarId(String correo_recup){
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         CollectionReference collectionReference = firebase.collection("Usuario");
-        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.toString());
+        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.trim());
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -121,12 +125,12 @@ public class crear_cuenta extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Snackbar.make(vista, "Este correo ya tiene una cuenta enlazada", Snackbar.LENGTH_LONG).show();
-                            existe= false;
+                            existe= true;
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
+                   }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            existe=true;
+                            existe=false;
                         }
                     });
                 }
@@ -135,9 +139,8 @@ public class crear_cuenta extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        existe= true;
+                        existe= false;
                     }
                 });
-        return existe;
     }
 }

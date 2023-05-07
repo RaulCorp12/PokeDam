@@ -38,19 +38,6 @@
     </Switch>
 
     <Button
-        android:id="@+id/modificar_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modificar perfil"
-        android:textColor="@color/white"
-        android:backgroundTint="#2547B1"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_oscuro">
-    </Button>
-
-    <Button
         android:id="@+id/boton_cerrar_sesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +47,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modificar_perfil">
+        app:layout_constraintTop_toBottomOf="@+id/activar_oscuro">
     </Button>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

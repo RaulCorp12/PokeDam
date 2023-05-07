@@ -132,7 +132,7 @@ public class crear_caza extends AppCompatActivity {
         crear_caza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nueva.getMetodo().equals("") || nueva.getNombre().equals("")){
+                if(nueva.getMetodo()==null || nueva.getNombre()==null){
                     Snackbar.make(v,"Debes seleccionar todos los datos de la caza",Snackbar.LENGTH_LONG).show();
                 }
                 else{

@@ -59,7 +59,7 @@ public class inicio_sesion extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(correo.getText().toString().isEmpty()){
-                    Snackbar.make(vista,"Debes introducir un nombre de usuario", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(vista,"Debes introducir un correo electrónico", Snackbar.LENGTH_LONG).show();
                 }
                 else if(contraseña.getText().toString().isEmpty()){
                     Snackbar.make(vista,"Debes introducir una contraseña", Snackbar.LENGTH_LONG).show();
