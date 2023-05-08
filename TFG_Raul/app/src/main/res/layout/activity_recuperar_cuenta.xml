@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".actividades.recuperar_cuenta"
+    tools:context=".actividades.Recuperar_cuenta"
     android:background="@drawable/fondo"
     android:id="@+id/recuperar_cuenta_layout">
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/logo_recuperar"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_marginTop="40dp"
@@ -29,7 +29,7 @@
         android:layout_marginRight="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo_recuperar"
         android:background="@color/white">
 
         <TextView

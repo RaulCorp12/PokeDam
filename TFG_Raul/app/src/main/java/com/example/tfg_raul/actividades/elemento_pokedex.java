@@ -17,11 +17,10 @@ public class elemento_pokedex extends AppCompatActivity {
 
     Preferencias preferencia=null;
 
-    private ConstraintLayout elemento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -36,14 +35,14 @@ public class elemento_pokedex extends AppCompatActivity {
         ImageView tipo2= findViewById(R.id.tipo2_poke_unico);
         ImageView modelo= findViewById(R.id.modelo_poke);
         ImageView modelo_variocolor= findViewById(R.id.modelo_poke_variocolor);
-        String tipo1TXT="", tipo2TXT="";
+        String tipo1TXT, tipo2TXT;
         TextView descripcion= findViewById(R.id.descripcion_poke_unico);
         TextView peso= findViewById(R.id.peso_unico_poke);
         TextView tamaño= findViewById(R.id.tamaño_unico_pokemon);
         Button salir= findViewById(R.id.salida_pokemon_unico);
-        elemento = findViewById(R.id.layout_elemento_pokedex);
+        ConstraintLayout elemento = findViewById(R.id.layout_elemento_pokedex);
 
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             elemento.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
@@ -62,8 +61,8 @@ public class elemento_pokedex extends AppCompatActivity {
         Glide.with(this).load(tipo1TXT).into(tipo1);
         Glide.with(this).load(tipo2TXT).into(tipo2);
         descripcion.setText(elegido.getDescripcion());
-        peso.setText(String.valueOf(elegido.getPeso())+"Kg");
-        tamaño.setText(String.valueOf(elegido.getTamaño())+"M");
+        peso.setText(elegido.getPeso() +"Kg");
+        tamaño.setText(elegido.getTamaño() +"M");
         Glide.with(this).load(elegido.getModelo()).into(modelo);
         Glide.with(this).load(elegido.getModeloVariocolor()).into(modelo_variocolor);
 

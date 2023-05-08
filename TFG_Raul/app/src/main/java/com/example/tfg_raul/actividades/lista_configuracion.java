@@ -1,4 +1,5 @@
 package com.example.tfg_raul.actividades;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,11 +18,11 @@ import com.google.android.material.navigation.NavigationBarView;
 public class lista_configuracion extends AppCompatActivity {
 
     Preferencias preferencia=null;
-    private ConstraintLayout configuracion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -30,12 +31,12 @@ public class lista_configuracion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_lista_configuracion);
-        configuracion= findViewById(R.id.layout_config);
+        ConstraintLayout configuracion = findViewById(R.id.layout_config);
         BottomNavigationView menu= findViewById(R.id.menu_config);
         Switch modo_oscuro= findViewById(R.id.activar_oscuro);
         Button cerrar_sesion= findViewById(R.id.boton_cerrar_sesion);
 
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             modo_oscuro.setChecked(true);
             configuracion.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }

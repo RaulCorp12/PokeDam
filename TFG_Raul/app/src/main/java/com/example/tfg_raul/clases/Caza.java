@@ -1,5 +1,7 @@
 package com.example.tfg_raul.clases;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Caza implements Serializable {
@@ -25,6 +27,7 @@ public class Caza implements Serializable {
     public Caza() {
     }
 
+    @NonNull
     @Override
     public String toString(){
         return nombre+"/"+ modelo +"/"+tiempo+"/"+intentos+"/"+id_usuario+"/"+metodo;

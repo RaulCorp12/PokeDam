@@ -1,5 +1,6 @@
 package com.example.tfg_raul.clases;
 
+import androidx.annotation.NonNull;
 import java.io.Serializable;
 
 public class Pokemon implements Serializable {
@@ -28,9 +29,8 @@ public class Pokemon implements Serializable {
         this.modeloVariocolor= modeloVariocolor;
     }
 
-    public Pokemon() {
-    }
-
+    @NonNull
+    @Override
     public String toString(){
         return nombre+"/"+descripcion+"/"+tipo1+"/"+tipo2+"/"+tamaño+"/"+peso+"/"+imagen;
     }
@@ -47,59 +47,30 @@ public class Pokemon implements Serializable {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getTipo1() {
         return tipo1;
-    }
-
-    public void setTipo1(String tipo1) {
-        this.tipo1 = tipo1;
     }
 
     public String getTipo2() {
         return tipo2;
     }
 
-    public void setTipo2(String tipo2) {
-        this.tipo2 = tipo2;
-    }
-
     public Double getTamaño() {
         return tamaño;
-    }
-
-    public void setTamaño(Double tamaño) {
-        this.tamaño = tamaño;
     }
 
     public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-
     public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
     public String getImagenShiny() {return imagenShiny;}
-
-    public void setImagenShiny(String imagenShiny) {this.imagenShiny = imagenShiny;}
 
     public String getModelo() {return modelo;}
 
-    public void setModelo(String modelo) {this.modelo = modelo;}
-
     public String getModeloVariocolor() {return modeloVariocolor;}
 
-    public void setModeloVariocolor(String modeloVariocolor) {this.modeloVariocolor = modeloVariocolor;}
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".actividades.perfil_usuario"
+    tools:context=".actividades.Perfil_usuario"
     android:background="@drawable/fondo"
     android:id="@+id/layout_perfil">
 

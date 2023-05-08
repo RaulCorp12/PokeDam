@@ -1,10 +1,14 @@
 package com.example.tfg_raul.actividades;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,6 +46,10 @@ public class crear_cuenta extends AppCompatActivity {
         TextInputEditText correo= findViewById(R.id.valor_crear_correo);
         TextInputEditText contraseña= findViewById(R.id.valor_crear_contraseña);
         TextInputEditText repeticion= findViewById(R.id.valor_repetir_contraseña);
+        String logo="https://i.pinimg.com/originals/48/fc/70/48fc7025c43087805236c8997f82d6d4.gif";
+        ImageView logo_app= findViewById(R.id.logo_crear);
+
+        Glide.with(this).load(logo).into(logo_app);
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +67,7 @@ public class crear_cuenta extends AppCompatActivity {
                 }
                 else {
                     Matcher validacion= pattern.matcher(correo.getText().toString());
-                    if(validacion.find()==false){
+                    if(!validacion.find()){
                         Snackbar.make(vista,"Debes insertar un correo electrónico válido",Snackbar.LENGTH_LONG).show();
                     }
                     else{
@@ -75,7 +83,7 @@ public class crear_cuenta extends AppCompatActivity {
                                 }
                                 else{
                                     recuperarId(correo.getText().toString());
-                                    if(existe=false){
+                                    if(!existe){
                                         saveDataToDatabase(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
                                     }
                                 }

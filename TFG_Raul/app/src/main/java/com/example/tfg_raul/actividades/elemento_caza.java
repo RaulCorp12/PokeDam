@@ -29,7 +29,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class elemento_caza extends AppCompatActivity {
-    private ConstraintLayout cazas;
     FirebaseFirestore firebaseID= FirebaseFirestore.getInstance();
     TextView tiempo;
     Button reanudar;
@@ -50,7 +49,7 @@ public class elemento_caza extends AppCompatActivity {
         tiempo= findViewById(R.id.tiempo_caza);
         ImageView imagen= findViewById(R.id.imagen_caza);
         temporizador= new Timer();
-        cazas = findViewById(R.id.layout_cazar_pokemon);
+        ConstraintLayout cazas = findViewById(R.id.layout_cazar_pokemon);
 
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
@@ -60,17 +59,19 @@ public class elemento_caza extends AppCompatActivity {
         Glide.with(this).load(elegida.getModelo()).into(imagen);
         nombre.setText(elegida.getNombre());
 
-        if(elegida.getMetodo().equals("Pesca")){
-            cazas.setBackgroundResource(R.drawable.pesca);
-        }
-        else if(elegida.getMetodo().equals("Encuentros")){
-            cazas.setBackgroundResource(R.drawable.encuentros);
-        }
-        else if(elegida.getMetodo().equals("Cadenas")){
-            cazas.setBackgroundResource(R.drawable.cadenas);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                intentos.setTextColor(getColor(R.color.white));
-            }
+        switch (elegida.getMetodo()) {
+            case "Pesca":
+                cazas.setBackgroundResource(R.drawable.pesca);
+                break;
+            case "Encuentros":
+                cazas.setBackgroundResource(R.drawable.encuentros);
+                break;
+            case "Cadenas":
+                cazas.setBackgroundResource(R.drawable.cadenas);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    intentos.setTextColor(getColor(R.color.white));
+                }
+                break;
         }
 
         intentos.setText(elegida.getIntentos());
@@ -84,7 +85,7 @@ public class elemento_caza extends AppCompatActivity {
         reanudar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tiempoIniciado== false){
+                if(!tiempoIniciado){
                     tiempoIniciado=true;
                     reanudar.setBackgroundResource(R.drawable.pause_button);
                     iniciarTiempo();

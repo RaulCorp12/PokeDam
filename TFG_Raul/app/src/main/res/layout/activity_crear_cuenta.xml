@@ -9,7 +9,7 @@
     android:id="@+id/pantalla_crear_cuenta">
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/logo_crear"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_marginTop="40dp"
@@ -29,7 +29,7 @@
         android:layout_marginRight="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo_crear"
         android:background="@color/white">
 
         <TextView

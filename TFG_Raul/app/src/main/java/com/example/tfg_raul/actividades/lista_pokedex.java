@@ -31,11 +31,11 @@ public class lista_pokedex extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     CollectionReference collectionReference = firebase.collection("Pokemon");
-    private ConstraintLayout pokedex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -46,10 +46,10 @@ public class lista_pokedex extends AppCompatActivity {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_lista_pokedex);
         BottomNavigationView menu= findViewById(R.id.menu_pokedex);
-        pokedex= findViewById(R.id.layout_pokedex);
-        List<Pokemon> listado_pokes= new ArrayList<Pokemon>();
+        ConstraintLayout pokedex = findViewById(R.id.layout_pokedex);
+        List<Pokemon> listado_pokes= new ArrayList<>();
 
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             pokedex.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

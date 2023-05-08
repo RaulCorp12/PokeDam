@@ -18,12 +18,11 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 public class lista_guias extends AppCompatActivity {
 
     Preferencias preferencia=null;
-    private ConstraintLayout guias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -36,9 +35,9 @@ public class lista_guias extends AppCompatActivity {
         YouTubePlayerView videoShinys= findViewById(R.id.youtube_player1);
         YouTubePlayerView videoCrianza= findViewById(R.id.youtube_player2);
         YouTubePlayerView videoPesca= findViewById(R.id.youtube_player3);
-        guias = findViewById(R.id.layout_guias);
+        ConstraintLayout guias = findViewById(R.id.layout_guias);
 
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             guias.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

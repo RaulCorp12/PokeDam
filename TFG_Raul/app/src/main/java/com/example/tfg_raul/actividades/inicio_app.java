@@ -16,11 +16,11 @@ import com.google.android.material.navigation.NavigationBarView;
 public class inicio_app extends AppCompatActivity {
 
     Preferencias preferencia=null;
-    private ConstraintLayout inicio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -31,8 +31,8 @@ public class inicio_app extends AppCompatActivity {
         setContentView(R.layout.activity_inicio_app);
         BottomNavigationView menu= findViewById(R.id.menu_inicio);
         ImageButton perfil= findViewById(R.id.ver_perfil);
-        inicio= findViewById(R.id.layout_inicio);
-        if(preferencia.cargar_modo_noche()==true){
+        ConstraintLayout inicio = findViewById(R.id.layout_inicio);
+        if(preferencia.cargar_modo_noche()){
             inicio.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
@@ -45,7 +45,7 @@ public class inicio_app extends AppCompatActivity {
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cambio= new Intent(inicio_app.this,perfil_usuario.class);
+                Intent cambio= new Intent(inicio_app.this, Perfil_usuario.class);
                 cambio.putExtra("id",id_usu);
                 startActivity(cambio);
             }

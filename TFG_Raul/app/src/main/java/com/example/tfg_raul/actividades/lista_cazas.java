@@ -32,11 +32,11 @@ public class lista_cazas extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     CollectionReference collectionReference = firebase.collection("Caza");
-    private ConstraintLayout cazas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -46,11 +46,11 @@ public class lista_cazas extends AppCompatActivity {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_lista_cazas);
         BottomNavigationView menu= findViewById(R.id.menu_caza);
-        cazas = findViewById(R.id.layout_cazas);
+        ConstraintLayout cazas = findViewById(R.id.layout_cazas);
         ImageButton nueva_caza= findViewById(R.id.boton_nueva_caza);
-        List<Caza> listado_cazas= new ArrayList<Caza>();
+        List<Caza> listado_cazas= new ArrayList<>();
 
-        if(preferencia.cargar_modo_noche()==true){
+        if(preferencia.cargar_modo_noche()){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
             nueva_caza.setImageResource(R.drawable.ic_baseline_add_to_photos_white_24);
         }
