@@ -23,7 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
+/*
+    Clase listado_pokedex
 
+    Muestra el listado de los pokemon que contiene la base de datos
+ */
 public class lista_pokedex extends AppCompatActivity {
     Preferencias preferencia=null;
     Adaptador_pokemons adaptadorPokemons;
@@ -31,7 +35,11 @@ public class lista_pokedex extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     CollectionReference collectionReference = firebase.collection("Pokemon");
-
+    /*
+    Método onCreate el cual es el encargado de ejecutar el código de la pantalla del listado de pokemons
+    una vez se llama a su pantalla desde cualquier parte de la aplicación.
+    No devuelve ningún valor.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
@@ -60,6 +68,12 @@ public class lista_pokedex extends AppCompatActivity {
         String id_usu= datos.getString("id");
 
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /*
+            Método publico onComplete, recibe como parámetro una serie de operaciones.
+            Este método es llamado en el proceso de ejcución de la pantalla, cargando los datos de los pokemon de
+            la base de datos y guardandolos en un listado y llamando al adaptador para colocarlos.
+            No devuelve ningún valor.
+            */
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
@@ -98,6 +112,12 @@ public class lista_pokedex extends AppCompatActivity {
         });
 
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            /*
+            Método publico onNavigationItemSelected, recibe como parámetro un menú de objetos.
+            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la aplicación, llamando
+            a su correcpondiente pantalla dependiendo del que sea pulsao y navegando hasta ella.
+            Devuelve un valor de tipo booleano.
+            */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -127,6 +147,11 @@ public class lista_pokedex extends AppCompatActivity {
             }
         });
     }
+    /*
+    Método publico onBackPressed, no recibe ningun valor como parámetro.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    No devuelve ningún valor.
+    */
     @Override
     public void onBackPressed(){
 

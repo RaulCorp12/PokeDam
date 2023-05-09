@@ -29,7 +29,7 @@ public class Perfil_usuario extends AppCompatActivity {
     Preferencias preferencia=null;
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     /*
-    Método onCreate el cual es el encargado de ejecutar el código de su interior una vez se llama
+    Método onCreate el cual es el encargado de ejecutar el código del perfil del usuario una vez se llama
     a su pantalla desde cualquier parte de la aplicación.
     No devuelve ningún valor.
      */
@@ -85,7 +85,6 @@ public class Perfil_usuario extends AppCompatActivity {
                 Snackbar.make(vista,"No se pudieron recuperar tus datos", Snackbar.LENGTH_LONG).show();
             }
         });
-
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,11 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,30 +25,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 /*
     Clase recuperar_cuenta
 
     Contiene la lógica para la recuperación de datos del usuario validando sus datos
  */
 public class Recuperar_cuenta extends AppCompatActivity {
-    String nombre,correo,contraseña;
     String id_correo="";
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
+    FirebaseAuth autenticacion= FirebaseAuth.getInstance();
     Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     /*
-    Método onCreate el cual es el encargado de ejecutar el código de su interior una vez se llama
-    a su pantalla desde cualquier parte de la aplicación.
+    Método onCreate el cual es el encargado de ejecutar el código de la pantalla de recuperar
+    cuentas una vez se llama a su pantalla desde cualquier parte de la aplicación.
     No devuelve ningún valor.
      */
     @Override
@@ -101,47 +91,29 @@ public class Recuperar_cuenta extends AppCompatActivity {
         CollectionReference collectionReference = firebase.collection("Usuario");
         Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.trim());
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    /*
+                    Método publico onComplete, recibe como parámetro una serie de operaciones.
+                    Este método es llamado cuando el usuario intenta recuperar sus datos y se llegan a recuperar, pasando a validar
+                    si los datos son los correctos.
+                    No devuelve ningún valor.
+                    */
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(QueryDocumentSnapshot id: task.getResult()){
                             id_correo= id.getId();
-                            DocumentReference documento= firebase.collection("Usuario").document(id_correo);
-                            documento.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                /*
-                                Método publico onSuccess, recibe como parámetro un objeto de tipo DocumentSbaoshot.
-                                Este método es llamado cuando el llamado a los datos de su documento ha tenido éxito, procediendo a ejecutar su contenido.
-                                No devuelve ningún valor.
-                                */
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    Snackbar.make(vista, "Se te enviará un correo electrónico con tus datos, comprueba tu bandeja de entrada", Snackbar.LENGTH_INDEFINITE).setAction("Aceptar", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-
-                                        }
-                                    }).show();
-                                    nombre= documentSnapshot.getString("nombre");
-                                    correo= documentSnapshot.getString("correo");
-                                    contraseña= documentSnapshot.getString("contraseña");
-                                    envio_de_datos();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                /*
-                                Método publico onFailure, recibe como parámetro un objeto de tipo Exception.
-                                Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a ejecutar su contenido.
-                                No devuelve ningún valor.
-                                */
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Snackbar.make(vista,"No se pudieron recuperar los datos", Snackbar.LENGTH_LONG).show();
-                                }
-                            });
+                            if(id_correo.isEmpty()){
+                                Snackbar.make(vista,"No se pudieron recuperar tus datos en este momento", Snackbar.LENGTH_LONG).show();
+                            }
+                            else{
+                                envio_de_datos(correo_recup);
+                            }
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     /*
                     Método publico onFailure, recibe como parámetro un objeto de tipo Exception.
-                    Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a ejecutar su contenido.
+                    Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a mostrar un mensaje de
+                    error por pantalla al usuario.
                     No devuelve ningún valor.
                     */
                     @Override
@@ -152,42 +124,28 @@ public class Recuperar_cuenta extends AppCompatActivity {
     }
     /*
     Método envio_de_datos, no recibe ningún parámetro.
-    Cuando se ha confirmado el correo electrónico del usuario se llama a este método, el cual recoge los datos del usuario
-    y se los envia por correo por protocolo smtp.
+    Cuando se ha confirmado el correo electrónico del usuario se llama a este método, el cual envia al usuario un correo
+    electrónico con un enlace para que resetee sus datos de inicio de sesion.
     No devuelve ningún valor.
      */
-    public void envio_de_datos(){
-        String remitente="raul.cordia@sanviatorvalladolid.com";
-        String contraseña_remitente= "RxWh7878";
-
-        StrictMode.ThreadPolicy policy= new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        Properties propiedades= new Properties();
-        propiedades.put("mail.smtp.host","smtp.googlemail.com");
-        propiedades.put("mail.smtp.socketFactory.port","465");
-        propiedades.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-        propiedades.put("mail.smtp.auth","true");
-        propiedades.put("mail.smtp.port","465");
-
-        try {
-            Session sesion = Session.getDefaultInstance(propiedades, new Authenticator() {
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(remitente, contraseña_remitente);
-                }
-            });
-
-            if (sesion != null) {
-                Message mensaje = new MimeMessage(sesion);
-                mensaje.setFrom(new InternetAddress(remitente));
-                mensaje.setSubject("Recuperación de datos para "+correo);
-                mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(correo.trim()));
-                mensaje.setContent("Solicitaste tus datos de inicio de sesión<br>Correo electrónico: "+correo+"<br>Contraseña: "+
-                        contraseña+"<br>Si no enviaste la petición simplemente ignora este correo","text/html; charset=utf-8");
-                Transport.send(mensaje);
-            }
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+    public void envio_de_datos(String correo){
+        View vista= findViewById(R.id.recuperar_cuenta_layout);
+        autenticacion.setLanguageCode("es");
+        autenticacion.sendPasswordResetEmail(correo)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Snackbar.make(vista,"Comprueba tu bandeja de entrada", Snackbar.LENGTH_INDEFINITE).setAction("ACEPTAR", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {}
+                        }).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Snackbar.make(vista,"No se pudo enviar el correo", Snackbar.LENGTH_LONG).show();
+                    }
+                });
     }
 }

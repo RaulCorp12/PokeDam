@@ -14,11 +14,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-
 public class lista_guias extends AppCompatActivity {
-
     Preferencias preferencia=null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
@@ -36,14 +33,12 @@ public class lista_guias extends AppCompatActivity {
         YouTubePlayerView videoCrianza= findViewById(R.id.youtube_player2);
         YouTubePlayerView videoPesca= findViewById(R.id.youtube_player3);
         ConstraintLayout guias = findViewById(R.id.layout_guias);
-
         if(preferencia.cargar_modo_noche()){
             guias.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
             guias.setBackground(getResources().getDrawable(R.drawable.fondo));
         }
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
 
@@ -83,7 +78,6 @@ public class lista_guias extends AppCompatActivity {
                 youTubePlayer.cueVideo(id,0);
             }
         }, iFramePlayerOptions);
-
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

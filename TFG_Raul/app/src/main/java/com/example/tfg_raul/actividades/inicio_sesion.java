@@ -39,8 +39,8 @@ public class inicio_sesion extends AppCompatActivity {
     FirebaseAuth autenticacion= FirebaseAuth.getInstance();
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     /*
-    Método onCreate el cual es el encargado de ejecutar el código de su interior una vez se llama
-    a su pantalla desde cualquier parte de la aplicación.
+    Método onCreate el cual es el encargado de ejecutar el código de la pantalla de iniciar sesión
+    una vez se llama a su pantalla desde cualquier parte de la aplicación.
     No devuelve ningún valor.
      */
     @Override
@@ -56,7 +56,6 @@ public class inicio_sesion extends AppCompatActivity {
         ImageView logo_app= findViewById(R.id.logo_app);
         String logo="https://i.pinimg.com/originals/48/fc/70/48fc7025c43087805236c8997f82d6d4.gif";
         Glide.with(this).load(logo).into(logo_app);
-
         crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +63,6 @@ public class inicio_sesion extends AppCompatActivity {
                 startActivity(cambio);
             }
         });
-
         iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +86,6 @@ public class inicio_sesion extends AppCompatActivity {
             }
         });
     }
-
     /*
     Método iniciar_Sesion, recibe como parametros el correo y la contraseña introducidos por el usuario.
     Intenta realizar el inicio de sesión en la base de datos con los datos recibidos.
@@ -97,10 +94,9 @@ public class inicio_sesion extends AppCompatActivity {
     public void iniciar_Sesion(String correo, String contraseña){
 
         View vista= findViewById(R.id.pantalla_inicio_sesion);
-
         autenticacion.signInWithEmailAndPassword(correo, contraseña).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
            /*
-           Método publico onSuccess, recibe como parámetro un objeto de tipo DocumentSbaoshot.
+           Método publico onSuccess, recibe como parámetro un objeto de tipo DocumentSnapshot.
            Este método es llamado cuando el llamado a los datos de su documento ha tenido éxito, procediendo a ejecutar su contenido.
            No devuelve ningún valor.
            */
@@ -176,7 +172,8 @@ public class inicio_sesion extends AppCompatActivity {
     }
     /*
     Método publico onBackPressed, no recibe ningun valor como parámetro.
-    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil, mostrando
+    un menú para salir o no de la aplicación.
     No devuelve ningún valor.
      */
     @Override
