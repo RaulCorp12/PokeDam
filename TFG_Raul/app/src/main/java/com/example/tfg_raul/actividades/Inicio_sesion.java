@@ -4,6 +4,8 @@ package com.example.tfg_raul.actividades;
  */
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,13 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 /*
     Clase inicio_sesion
 
     Representa la lógica del inicio de sesión en la aplicación
  */
-public class inicio_sesion extends AppCompatActivity {
+public class Inicio_sesion extends AppCompatActivity {
     String id_correo="";
     FirebaseAuth autenticacion= FirebaseAuth.getInstance();
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
@@ -43,6 +44,7 @@ public class inicio_sesion extends AppCompatActivity {
     una vez se llama a su pantalla desde cualquier parte de la aplicación.
     No devuelve ningún valor.
      */
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +56,11 @@ public class inicio_sesion extends AppCompatActivity {
         Button crear= findViewById(R.id.boton_crear_cuenta);
         Button recordar= findViewById(R.id.boton_recordar_cuenta);
         ImageView logo_app= findViewById(R.id.logo_app);
-        String logo="https://i.pinimg.com/originals/48/fc/70/48fc7025c43087805236c8997f82d6d4.gif";
-        Glide.with(this).load(logo).into(logo_app);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/pokedam-dba0a.appspot.com/o/Pokemon%2Fgifs%2Fgif_app_1.gif?alt=media&token=a30ceb1b-c13f-4194-8575-0e7150e618a2").into(logo_app);
         crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio= new Intent(inicio_sesion.this,crear_cuenta.class);
+                Intent cambio= new Intent(Inicio_sesion.this, Crear_cuenta.class);
                 startActivity(cambio);
             }
         });
@@ -87,7 +88,7 @@ public class inicio_sesion extends AppCompatActivity {
         });
     }
     /*
-    Método iniciar_Sesion, recibe como parametros el correo y la contraseña introducidos por el usuario.
+    Método público iniciar_Sesion, recibe como parametros el correo y la contraseña introducidos por el usuario.
     Intenta realizar el inicio de sesión en la base de datos con los datos recibidos.
     No devuelve ningún valor.
      */
@@ -96,7 +97,7 @@ public class inicio_sesion extends AppCompatActivity {
         View vista= findViewById(R.id.pantalla_inicio_sesion);
         autenticacion.signInWithEmailAndPassword(correo, contraseña).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
            /*
-           Método publico onSuccess, recibe como parámetro un objeto de tipo DocumentSnapshot.
+           Método público onSuccess, recibe como parámetro un objeto de tipo DocumentSnapshot.
            Este método es llamado cuando el llamado a los datos de su documento ha tenido éxito, procediendo a ejecutar su contenido.
            No devuelve ningún valor.
            */
@@ -107,7 +108,7 @@ public class inicio_sesion extends AppCompatActivity {
         })
                 .addOnFailureListener(new OnFailureListener() {
                     /*
-                    Método publico onFailure, recibe como parámetro un objeto de tipo Exception.
+                    Método público onFailure, recibe como parámetro un objeto de tipo Exception.
                     Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a ejecutar su contenido.
                     No devuelve ningún valor.
                     */
@@ -134,19 +135,19 @@ public class inicio_sesion extends AppCompatActivity {
                             DocumentReference documento= firebase.collection("Usuario").document(id_correo);
                             documento.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 /*
-                                Método publico onSuccess, recibe como parámetro un objeto de tipo DocumentSbaoshot.
+                                Método público onSuccess, recibe como parámetro un objeto de tipo DocumentSbaoshot.
                                 Este método es llamado cuando el llamado a los datos de su documento ha tenido éxito, procediendo a ejecutar su contenido.
                                 No devuelve ningún valor.
                                 */
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    Intent cambio= new Intent(getApplicationContext(), inicio_app.class);
+                                    Intent cambio= new Intent(getApplicationContext(), Inicio_app.class);
                                     cambio.putExtra("id",id_correo);
                                     startActivity(cambio);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 /*
-                                Método publico onFailure, recibe como parámetro un objeto de tipo Exception.
+                                Método público onFailure, recibe como parámetro un objeto de tipo Exception.
                                 Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a ejecutar su contenido.
                                 No devuelve ningún valor.
                                 */
@@ -160,7 +161,7 @@ public class inicio_sesion extends AppCompatActivity {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     /*
-                    Método publico onFailure, recibe como parámetro un objeto de tipo Exception.
+                    Método público onFailure, recibe como parámetro un objeto de tipo Exception.
                     Este método es llamado cuando el llamado a los datos de su documento no ha tenido éxito, procediendo a ejecutar su contenido.
                     No devuelve ningún valor.
                     */
@@ -171,7 +172,7 @@ public class inicio_sesion extends AppCompatActivity {
                 });
     }
     /*
-    Método publico onBackPressed, no recibe ningun valor como parámetro.
+    Método público onBackPressed, no recibe ningun valor como parámetro.
     Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil, mostrando
     un menú para salir o no de la aplicación.
     No devuelve ningún valor.

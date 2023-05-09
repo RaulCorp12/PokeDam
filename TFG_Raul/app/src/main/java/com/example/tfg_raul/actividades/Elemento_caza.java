@@ -27,8 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+/*
+    Clase pública Elemento_caza
 
-public class elemento_caza extends AppCompatActivity {
+    Contiene la información de la caza una vez es seleccionada de su listado
+ */
+public class Elemento_caza extends AppCompatActivity {
     FirebaseFirestore firebaseID= FirebaseFirestore.getInstance();
     TextView tiempo;
     Button reanudar;
@@ -36,6 +40,11 @@ public class elemento_caza extends AppCompatActivity {
     Timer temporizador;
     TimerTask tarea;
     Double tempo;
+    /*
+    Método protected onCreate el cual se encarga de ejecutar el código de la pantalla llamada Elemento_caza
+    una vez se llama a su pantalla desde el listado de cazas seleccionando una caza.
+    No devuelve ningún valor.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +59,10 @@ public class elemento_caza extends AppCompatActivity {
         ImageView imagen= findViewById(R.id.imagen_caza);
         temporizador= new Timer();
         ConstraintLayout cazas = findViewById(R.id.layout_cazar_pokemon);
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
 
         Caza elegida= (Caza) datos.get("caza");
-
         Glide.with(this).load(elegida.getModelo()).into(imagen);
         nombre.setText(elegida.getNombre());
 
@@ -68,9 +75,6 @@ public class elemento_caza extends AppCompatActivity {
                 break;
             case "Cadenas":
                 cazas.setBackgroundResource(R.drawable.cadenas);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    intentos.setTextColor(getColor(R.color.white));
-                }
                 break;
         }
 
@@ -105,12 +109,12 @@ public class elemento_caza extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onBackPressed(){
-
-    }
-
+    /*
+    Método público iniciarTiempo, no recibe ningun valor como parámetro.
+    Este inicia o detiene el temporizador de la caza dependiendo del valor booleano que contempla
+    si esta activo o no.
+    No devuelve ningún valor.
+    */
     public void iniciarTiempo(){
         tempo= Double.valueOf(tiempo.getText().toString().substring(6,8));
         tarea= new TimerTask() {
@@ -127,7 +131,12 @@ public class elemento_caza extends AppCompatActivity {
         };
         temporizador.scheduleAtFixedRate(tarea, 0,1000);
     }
-
+    /*
+    Método público recogerTiempp, no recibe ningun valor como parámetro.
+    Recoge el tiempo que esté registrado en el temporizador una vez es detenido por el usuario,
+    despué envia los datos a otro método para su formateo.
+    Devuelve un String que representa el tiempo recogido.
+    */
     private String recogerTiempo(){
         int redondeo= (int) Math.round(tempo);
         int segundos= ((redondeo % 86400) % 3600) % 60;
@@ -135,13 +144,20 @@ public class elemento_caza extends AppCompatActivity {
         int horas= ((redondeo % 86400) / 3600);
         return formateoTiempo(segundos,minutos,horas);
     }
-
+    /*
+    Método público formateoTiempo, recibe como parámetros los valores de segundos, minutos y horas del temporizador.
+    Formatea los datos que le llegan con el módelo del temporizador.
+    Devuelve un String que representa el tiempo formateado.
+    */
     private String formateoTiempo(int segundos, int minutos, int horas){
         return String.format("%02d",horas)+":"+ String.format("%02d",minutos)+":" +String.format("%02d",segundos);
     }
-
+    /*
+    Método público actualizarDatos, recibe como parámetros los diferentes campos que contiene una caza en la base de datos.
+    Actualiza la caza con los nuevos datos que se han registrado en la pantalla, para después volver al listado de cazas
+    No devuelve nigún valor.
+    */
     public void actualizarDatos(String id_caza, String intentos, String tiempo, String id_usu){
-
         CollectionReference collectionReference = firebaseID.collection("Caza");
         Query sentencia= collectionReference.whereEqualTo("id_caza", id_caza);
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -157,7 +173,7 @@ public class elemento_caza extends AppCompatActivity {
                             actualizacion.put("tiempo", tiempo);
                             documento.update(actualizacion);
 
-                            Intent cambio= new Intent(elemento_caza.this, lista_cazas.class);
+                            Intent cambio= new Intent(Elemento_caza.this, Lista_cazas.class);
                             cambio.putExtra("id",id_usu);
                             startActivity(cambio);
                         }
@@ -174,5 +190,15 @@ public class elemento_caza extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                     }
                 });
+    }
+
+    /*
+    Método público onBackPressed, no recibe ningun valor como parámetro.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    No devuelve ningún valor.
+    */
+    @Override
+    public void onBackPressed(){
+
     }
 }

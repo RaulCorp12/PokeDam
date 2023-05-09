@@ -14,8 +14,18 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
-public class lista_guias extends AppCompatActivity {
+/*
+    Clase pública Lista_guias
+
+    Muestra una serie de guias relacionadas con el contenido de la aplicación
+ */
+public class Lista_guias extends AppCompatActivity {
     Preferencias preferencia=null;
+    /*
+    Método onCreate el cual es el encargado de ejecutar el código de la pantalla del listado de guias
+    una vez se llama a su pantalla desde cualquier parte de la aplicación.
+    No devuelve ningún valor.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
@@ -79,27 +89,33 @@ public class lista_guias extends AppCompatActivity {
             }
         }, iFramePlayerOptions);
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            /*
+            Método público onNavigationItemSelected, recibe como parámetro un menú de objetos.
+            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la pantalla Lista_guias, llamando
+            a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta ella como consecuencia.
+            Devuelve un valor de tipo booleano.
+            */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id= item.getItemId();
                 if(id==R.id.boton_menu_pokedex){
-                    Intent cambio= new Intent(lista_guias.this,lista_pokedex.class);
+                    Intent cambio= new Intent(Lista_guias.this, Lista_pokedex.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_inicio){
-                    Intent cambio= new Intent(lista_guias.this,inicio_app.class);
+                    Intent cambio= new Intent(Lista_guias.this, Inicio_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(lista_guias.this, lista_cazas.class);
+                    Intent cambio= new Intent(Lista_guias.this, Lista_cazas.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_config){
-                    Intent cambio= new Intent(lista_guias.this,lista_configuracion.class);
+                    Intent cambio= new Intent(Lista_guias.this, Configuracion_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
@@ -107,7 +123,11 @@ public class lista_guias extends AppCompatActivity {
             }
         });
     }
-
+    /*
+    Método público onBackPressed, no recibe ningun valor como parámetro.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    No devuelve ningún valor.
+    */
     @Override
     public void onBackPressed(){
 

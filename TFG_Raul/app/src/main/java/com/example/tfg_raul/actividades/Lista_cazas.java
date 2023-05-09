@@ -24,15 +24,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
+/*
+    Clase pública Lista_cazas
 
-public class lista_cazas extends AppCompatActivity {
+    Contiene el listado de las cazas registradas en la base de datos
+ */
+public class Lista_cazas extends AppCompatActivity {
     Preferencias preferencia=null;
     Adaptador_cazas adaptadorCazas;
     RecyclerView recycle;
     RecyclerView.LayoutManager layoutManager;
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     CollectionReference collectionReference = firebase.collection("Caza");
-
+    /*
+    Método onCreate el cual se encargada de ejecutar el código de la pantalla llamada Lista_cazas
+    una vez se llama a su pantalla desde cualquier parte de la aplicación.
+    No devuelve ningún valor.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
@@ -49,7 +57,6 @@ public class lista_cazas extends AppCompatActivity {
         ConstraintLayout cazas = findViewById(R.id.layout_cazas);
         ImageButton nueva_caza= findViewById(R.id.boton_nueva_caza);
         List<Caza> listado_cazas= new ArrayList<>();
-
         if(preferencia.cargar_modo_noche()){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
             nueva_caza.setImageResource(R.drawable.ic_baseline_add_to_photos_white_24);
@@ -58,10 +65,16 @@ public class lista_cazas extends AppCompatActivity {
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo));
             nueva_caza.setImageResource(R.drawable.baseline_add_to_photos_24);
         }
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
+
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /*
+            Método público onComplete, recibe como parámetro una serie de operaciones.
+            Este método es llamado en el proceso de ejecución de la pantalla, cargando los datos de las cazas de
+            la base de datos y guardandolas en un listado, para después llamar al adaptador para colocarlos en el listado.
+            No devuelve ningún valor.
+            */
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
@@ -85,7 +98,7 @@ public class lista_cazas extends AppCompatActivity {
                         public void onClick(View view) {
                             int posicion= recycle.getChildAdapterPosition(view);
                             Caza elegida= listado_cazas.get(posicion);
-                            Intent envio= new Intent(lista_cazas.this, elemento_caza.class);
+                            Intent envio= new Intent(Lista_cazas.this, Elemento_caza.class);
                             envio.putExtra("id",id_usu);
                             envio.putExtra("caza",elegida);
                             startActivity(envio);
@@ -102,33 +115,39 @@ public class lista_cazas extends AppCompatActivity {
         nueva_caza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cambio= new Intent(lista_cazas.this,crear_caza.class);
+                Intent cambio= new Intent(Lista_cazas.this, Crear_caza.class);
                 cambio.putExtra("id",id_usu);
                 startActivity(cambio);
             }
         });
 
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            /*
+            Método público onNavigationItemSelected, recibe como parámetro un menú de objetos.
+            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la pantalla Lista_cazas,
+            llamando a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta la pantalla seleccionada.
+            Devuelve un valor de tipo booleano.
+            */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id= item.getItemId();
                 if(id==R.id.boton_menu_pokedex){
-                    Intent cambio= new Intent(lista_cazas.this,lista_pokedex.class);
+                    Intent cambio= new Intent(Lista_cazas.this, Lista_pokedex.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_guia){
-                    Intent cambio= new Intent(lista_cazas.this,lista_guias.class);
+                    Intent cambio= new Intent(Lista_cazas.this, Lista_guias.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_inicio){
-                    Intent cambio= new Intent(lista_cazas.this, inicio_app.class);
+                    Intent cambio= new Intent(Lista_cazas.this, Inicio_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_config){
-                    Intent cambio= new Intent(lista_cazas.this,lista_configuracion.class);
+                    Intent cambio= new Intent(Lista_cazas.this, Configuracion_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
@@ -136,6 +155,11 @@ public class lista_cazas extends AppCompatActivity {
             }
         });
     }
+    /*
+    Método público onBackPressed, no recibe ningun valor como parámetro.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    No devuelve ningún valor.
+    */
     @Override
     public void onBackPressed(){
 

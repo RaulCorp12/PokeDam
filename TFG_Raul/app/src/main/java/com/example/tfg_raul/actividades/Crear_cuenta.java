@@ -2,12 +2,13 @@ package com.example.tfg_raul.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,13 +29,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+/*
+    Clase pública Crear_cuenta
 
-public class crear_cuenta extends AppCompatActivity {
+    Contiene los campos y métodos para crear y validar una nueva cuenta para el uso de la aplicación.
+ */
+public class Crear_cuenta extends AppCompatActivity {
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     FirebaseAuth autenticacion= FirebaseAuth.getInstance();
     String id_correo="";
     boolean existe;
     Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    /*
+    Método protected onCreate el cual se encargada de ejecutar el código de la pantalla llamada Crear_cuenta
+    una vez se llama a su pantalla desde el listado de cazas seleccionando una caza.
+    No devuelve ningún valor.
+    */
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +57,13 @@ public class crear_cuenta extends AppCompatActivity {
         TextInputEditText correo= findViewById(R.id.valor_crear_correo);
         TextInputEditText contraseña= findViewById(R.id.valor_crear_contraseña);
         TextInputEditText repeticion= findViewById(R.id.valor_repetir_contraseña);
-        String logo="https://i.pinimg.com/originals/48/fc/70/48fc7025c43087805236c8997f82d6d4.gif";
         ImageView logo_app= findViewById(R.id.logo_crear);
-
-        Glide.with(this).load(logo).into(logo_app);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/pokedam-dba0a.appspot.com/o/Pokemon%2Fgifs%2Fgif_app_1.gif?alt=media&token=a30ceb1b-c13f-4194-8575-0e7150e618a2").into(logo_app);
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio= new Intent(crear_cuenta.this, inicio_sesion.class);
+                Intent cambio= new Intent(Crear_cuenta.this, Inicio_sesion.class);
                 startActivity(cambio);
             }
         });
@@ -84,7 +93,7 @@ public class crear_cuenta extends AppCompatActivity {
                                 else{
                                     recuperarId(correo.getText().toString());
                                     if(!existe){
-                                        saveDataToDatabase(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
+                                        guardarUsuario(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
                                     }
                                 }
                             }
@@ -94,8 +103,13 @@ public class crear_cuenta extends AppCompatActivity {
             }
         });
     }
-    public void saveDataToDatabase(String nombre, String correo, String contraseña){
-
+    /*
+    Método public guardarUsuario. Recibe como parámetros los datos para crear la cuenta del usuario.
+    Utilizando los datos introducidos por el usuario y validados por la app, se crea una nueva cuenta
+    en la base de datos.
+    No devuelve ningún valor.
+    */
+    public void guardarUsuario(String nombre, String correo, String contraseña){
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         Map<String, Object> usuario= new HashMap<>();
         usuario.put("nombre",nombre);
@@ -107,7 +121,7 @@ public class crear_cuenta extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Intent cambio= new Intent(crear_cuenta.this, inicio_sesion.class);
+                        Intent cambio= new Intent(Crear_cuenta.this, Inicio_sesion.class);
                         startActivity(cambio);
                     }
                 })
@@ -118,7 +132,12 @@ public class crear_cuenta extends AppCompatActivity {
                     }
                 });
     }
-
+    /*
+    Método recuperar_id. Recibe como parámetro el correo electrónico del usuario.
+    Este método intenta recuperar de la base de datos la id del documento que contenga el correo electrónico del usuario pasado como parámetro
+    para comprobar si la cuenta ya existe en la base de datos.
+    No devuelve ningun valor.
+    */
     public void recuperarId(String correo_recup){
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         CollectionReference collectionReference = firebase.collection("Usuario");

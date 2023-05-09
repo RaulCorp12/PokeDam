@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".actividades.elemento_pokedex"
+    tools:context=".actividades.Elemento_pokedex"
     android:background="@drawable/fondo"
     android:id="@+id/layout_elemento_pokedex">
 
@@ -14,26 +14,11 @@
         android:layout_height="130dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
+        android:padding="5dp"
         android:background="@drawable/borde_listview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     </ImageView>
-
-    <TextView
-        android:id="@+id/nombre_poke_unico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NOMBRE"
-        android:textStyle="bold"
-        android:textColor = "?android:textColorPrimary"
-        android:textSize="23dp"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/imagen_poke_unico">
-    </TextView>
 
     <LinearLayout
         android:id="@+id/layout_tipos"
@@ -42,9 +27,22 @@
         android:orientation="vertical"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="130dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_poke_unico">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nombre_poke_unico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOMBRE"
+            android:textStyle="bold"
+            android:textColor = "?android:textColorPrimary"
+            android:textSize="23dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginBottom="20dp">
+        </TextView>
 
         <ImageView
             android:id="@+id/tipo1_poke_unico"
@@ -95,63 +93,74 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo_descripcion">
     </TextView>
 
-    <TextView
-        android:id="@+id/titulo_peso"
+    <LinearLayout
+        android:id="@+id/info_peso_pokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PESO"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:textColor = "?android:textColorPrimary"
-        android:layout_marginLeft="60dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="75dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion_poke_unico">
-    </TextView>
 
-    <TextView
-        android:id="@+id/peso_unico_poke"
+        <TextView
+            android:id="@+id/titulo_peso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PESO"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor = "?android:textColorPrimary">
+        </TextView>
+
+        <TextView
+            android:id="@+id/peso_unico_poke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor = "?android:textColorPrimary"
+            android:fontFamily="@font/roboto_condensed_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/info_tamaño_pokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.00"
-        android:textSize="20dp"
-        android:textColor = "?android:textColorPrimary"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:layout_marginLeft="65dp"
+        android:orientation="vertical"
+        android:gravity="center"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_peso">
-    </TextView>
-
-    <TextView
-        android:id="@+id/titulo_tamaño"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TAMAÑO"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:textColor = "?android:textColorPrimary"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="75dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion_poke_unico">
-    </TextView>
 
-    <TextView
-        android:id="@+id/tamaño_unico_pokemon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0.00"
-        android:textSize="20dp"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:textColor = "?android:textColorPrimary"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_tamaño">
-    </TextView>
+        <TextView
+            android:id="@+id/titulo_tamaño"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAMAÑO"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor = "?android:textColorPrimary">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tamaño_unico_pokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="20dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor = "?android:textColorPrimary">
+        </TextView>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/titulo_modelo"
@@ -189,7 +198,7 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tamaño_unico_pokemon">
+        app:layout_constraintTop_toBottomOf="@+id/info_tamaño_pokemon">
 
         <ImageView
             android:id="@+id/modelo_poke"
@@ -198,7 +207,7 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/borde_listview"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="8dp"
             android:src="@drawable/pokeball_icon_4">
         </ImageView>
 
@@ -209,7 +218,7 @@
             android:layout_marginLeft="40dp"
             android:background="@drawable/borde_listview"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="8dp"
             android:src="@drawable/pokeball_icon_4">
         </ImageView>
 

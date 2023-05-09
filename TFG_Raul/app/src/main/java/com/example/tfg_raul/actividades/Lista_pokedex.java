@@ -28,7 +28,7 @@ import java.util.List;
 
     Muestra el listado de los pokemon que contiene la base de datos
  */
-public class lista_pokedex extends AppCompatActivity {
+public class Lista_pokedex extends AppCompatActivity {
     Preferencias preferencia=null;
     Adaptador_pokemons adaptadorPokemons;
     RecyclerView recycle;
@@ -69,8 +69,8 @@ public class lista_pokedex extends AppCompatActivity {
 
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             /*
-            Método publico onComplete, recibe como parámetro una serie de operaciones.
-            Este método es llamado en el proceso de ejcución de la pantalla, cargando los datos de los pokemon de
+            Método público onComplete, recibe como parámetro una serie de operaciones.
+            Este método es llamado en el proceso de ejecución de la pantalla, cargando los datos de los pokemon de
             la base de datos y guardandolos en un listado y llamando al adaptador para colocarlos.
             No devuelve ningún valor.
             */
@@ -97,7 +97,7 @@ public class lista_pokedex extends AppCompatActivity {
                         public void onClick(View v) {
                             int posicion= recycle.getChildAdapterPosition(v);
                             Pokemon elegido= listado_pokes.get(posicion);
-                            Intent envio= new Intent(lista_pokedex.this, elemento_pokedex.class);
+                            Intent envio= new Intent(Lista_pokedex.this, Elemento_pokedex.class);
                             envio.putExtra("id",id_usu);
                             envio.putExtra("pokemon",elegido);
                             startActivity(envio);
@@ -114,8 +114,8 @@ public class lista_pokedex extends AppCompatActivity {
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             /*
             Método publico onNavigationItemSelected, recibe como parámetro un menú de objetos.
-            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la aplicación, llamando
-            a su correcpondiente pantalla dependiendo del que sea pulsao y navegando hasta ella.
+            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la pantalla Lista_pokedex,
+            llamando a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta la pantalla seleccionada.
             Devuelve un valor de tipo booleano.
             */
             @Override
@@ -124,22 +124,22 @@ public class lista_pokedex extends AppCompatActivity {
                 int id= item.getItemId();
 
                 if(id==R.id.boton_menu_inicio){
-                    Intent cambio= new Intent(lista_pokedex.this, inicio_app.class);
+                    Intent cambio= new Intent(Lista_pokedex.this, Inicio_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_guia){
-                    Intent cambio= new Intent(lista_pokedex.this, lista_guias.class);
+                    Intent cambio= new Intent(Lista_pokedex.this, Lista_guias.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(lista_pokedex.this, lista_cazas.class);
+                    Intent cambio= new Intent(Lista_pokedex.this, Lista_cazas.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
                 else if(id==R.id.boton_menu_config){
-                    Intent cambio= new Intent(lista_pokedex.this, lista_configuracion.class);
+                    Intent cambio= new Intent(Lista_pokedex.this, Configuracion_app.class);
                     cambio.putExtra("id",id_usu);
                     startActivity(cambio);
                 }
@@ -148,7 +148,7 @@ public class lista_pokedex extends AppCompatActivity {
         });
     }
     /*
-    Método publico onBackPressed, no recibe ningun valor como parámetro.
+    Método público onBackPressed, no recibe ningun valor como parámetro.
     Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
     No devuelve ningún valor.
     */

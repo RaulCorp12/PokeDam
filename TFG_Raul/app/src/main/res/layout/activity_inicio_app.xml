@@ -4,32 +4,42 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".actividades.inicio_app"
+    tools:context=".actividades.Inicio_app"
     android:background="@drawable/fondo"
     android:id="@+id/layout_inicio">
 
-    <ImageButton
-        android:id="@+id/ver_perfil"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/pokeball_icon_4"
-        android:background="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageButton>
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/info_perfil_usuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MI PERFIL"
-        android:layout_marginRight="30dp"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:textColor = "?android:textColorPrimary"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ver_perfil">
-    </TextView>
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:id="@+id/ver_perfil"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:src="@drawable/pokeball_icon_4"
+            android:background="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MI PERFIL"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor = "?android:textColorPrimary"
+            android:textSize="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ver_perfil">
+        </TextView>
+    </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_inicio"

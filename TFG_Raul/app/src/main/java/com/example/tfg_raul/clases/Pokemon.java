@@ -2,9 +2,10 @@ package com.example.tfg_raul.clases;
 
 import androidx.annotation.NonNull;
 import java.io.Serializable;
-
+/*
+    Clase pública caza. Implementa la interfaz Serializable
+    */
 public class Pokemon implements Serializable {
-
     public String nombre;
     public String descripcion;
     public String tipo1;
@@ -15,7 +16,9 @@ public class Pokemon implements Serializable {
     public String imagenShiny;
     public String modelo;
     public String modeloVariocolor;
-
+    /*
+    Constructor con parámetros de la clase Pokemon
+     */
     public Pokemon(String nombre, String descripcion, String tipo1, String tipo2, Double tamaño, Double peso, String imagen, String imagenShiny, String modelo, String modeloVariocolor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -29,6 +32,16 @@ public class Pokemon implements Serializable {
         this.modeloVariocolor= modeloVariocolor;
     }
 
+    /*
+    Constructor sin parámetros de la clase Pokemon
+     */
+    public Pokemon() {
+    }
+    /*
+    Método público toString. No recibe ningún parámetro.
+    Genera un String con los datos del Pokemon.
+    Retorna los datos del Pokemon.
+    */
     @NonNull
     @Override
     public String toString(){

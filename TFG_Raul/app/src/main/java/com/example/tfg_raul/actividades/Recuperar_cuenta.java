@@ -4,6 +4,8 @@ package com.example.tfg_raul.actividades;
  */
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +15,11 @@ import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -42,6 +41,7 @@ public class Recuperar_cuenta extends AppCompatActivity {
     cuentas una vez se llama a su pantalla desde cualquier parte de la aplicación.
     No devuelve ningún valor.
      */
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +50,13 @@ public class Recuperar_cuenta extends AppCompatActivity {
         Button recuperar= findViewById(R.id.boton_recuperar);
         Button volver= findViewById(R.id.boton_volver_inicio_sesion_recup);
         View vista= findViewById(R.id.recuperar_cuenta_layout);
-        String logo="https://i.pinimg.com/originals/48/fc/70/48fc7025c43087805236c8997f82d6d4.gif";
         ImageView logo_app= findViewById(R.id.logo_recuperar);
-
-        Glide.with(this).load(logo).into(logo_app);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/pokedam-dba0a.appspot.com/o/Pokemon%2Fgifs%2Fgif_app_1.gif?alt=media&token=a30ceb1b-c13f-4194-8575-0e7150e618a2").into(logo_app);
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio= new Intent(Recuperar_cuenta.this, inicio_sesion.class);
+                Intent cambio= new Intent(Recuperar_cuenta.this, Inicio_sesion.class);
                 startActivity(cambio);
             }
         });

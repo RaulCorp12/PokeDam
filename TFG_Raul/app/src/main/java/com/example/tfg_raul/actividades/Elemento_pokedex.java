@@ -12,11 +12,18 @@ import com.bumptech.glide.Glide;
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.clases.Pokemon;
 import com.example.tfg_raul.utilidades.Preferencias;
+/*
+    Clase pública Elemento_pokedex
 
-public class elemento_pokedex extends AppCompatActivity {
-
+    Contiene la información del pokemon seleccionado de el listado de pokemons
+ */
+public class Elemento_pokedex extends AppCompatActivity {
     Preferencias preferencia=null;
-
+    /*
+    Método protected onCreate el cual se encargada de ejecutar el código de la pantalla llamada Elemento_pokedex
+    una vez se llama a su pantalla desde el listado de pokemons.
+    No devuelve ningún valor.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
@@ -41,19 +48,16 @@ public class elemento_pokedex extends AppCompatActivity {
         TextView tamaño= findViewById(R.id.tamaño_unico_pokemon);
         Button salir= findViewById(R.id.salida_pokemon_unico);
         ConstraintLayout elemento = findViewById(R.id.layout_elemento_pokedex);
-
         if(preferencia.cargar_modo_noche()){
             elemento.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
             elemento.setBackground(getResources().getDrawable(R.drawable.fondo));
         }
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
 
         Pokemon elegido= (Pokemon) datos.get("pokemon");
-
         Glide.with(this).load(elegido.getImagen()).into(imagen);
         nombre.setText(elegido.getNombre());
         tipo1TXT=elegido.getTipo1();
@@ -69,13 +73,17 @@ public class elemento_pokedex extends AppCompatActivity {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cambio= new Intent(elemento_pokedex.this,lista_pokedex.class);
+                Intent cambio= new Intent(Elemento_pokedex.this, Lista_pokedex.class);
                 cambio.putExtra("id",id_usu);
                 startActivity(cambio);
             }
         });
     }
-
+    /*
+    Método público onBackPressed, no recibe ningun valor como parámetro.
+    Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
+    No devuelve ningún valor.
+    */
     @Override
     public void onBackPressed(){
 

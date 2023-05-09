@@ -88,14 +88,14 @@ public class Perfil_usuario extends AppCompatActivity {
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cambio= new Intent(getApplicationContext(), inicio_app.class);
+                Intent cambio= new Intent(getApplicationContext(), Inicio_app.class);
                 cambio.putExtra("id",id_usu);
                 startActivity(cambio);
             }
         });
     }
     /*
-    Método onBackPressed, no recibe ningun valor como parámetro.
+    Método público onBackPressed, no recibe ningun valor como parámetro.
     Este ejecuta su contenido una vez el usuario pulse el botón de retroceder de su dispositivo movil.
     No devuelve ningún valor.
      */

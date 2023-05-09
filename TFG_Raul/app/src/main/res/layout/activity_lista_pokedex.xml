@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".actividades.lista_pokedex"
+    tools:context=".actividades.Lista_pokedex"
     android:background="@drawable/fondo"
     android:orientation="vertical"
     android:id="@+id/layout_pokedex">
