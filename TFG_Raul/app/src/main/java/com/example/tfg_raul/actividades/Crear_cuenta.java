@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -85,14 +86,14 @@ public class Crear_cuenta extends AppCompatActivity {
                         }
                         else {
                             if (!contraseña.getText().toString().contains(".")) {
-                                Snackbar.make(vista, "La contraseña debe contener letras en mayuscula y en minuscula, numeros y caracteres especiales", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(vista, "La contraseña debe contener letras, numeros y al menos un punto", Snackbar.LENGTH_LONG).show();
                             } else {
                                 if(contraseña.getText().toString().length()<8){
-                                    Snackbar.make(vista, "La contraseña debe de tener 8 o más caracteres y numeros en total", Snackbar.LENGTH_LONG).show();
+                                    Snackbar.make(vista, "La contraseña debe de tener 8 o más dígitos en total", Snackbar.LENGTH_LONG).show();
                                 }
                                 else{
                                     recuperarId(correo.getText().toString());
-                                    if(!existe){
+                                    if(existe=false){
                                         guardarUsuario(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
                                     }
                                 }
@@ -141,32 +142,18 @@ public class Crear_cuenta extends AppCompatActivity {
     public void recuperarId(String correo_recup){
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         CollectionReference collectionReference = firebase.collection("Usuario");
-        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup.trim());
-        sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup);
+        sentencia.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for(QueryDocumentSnapshot id: task.getResult()){
-                    id_correo= id.getId();
-                    DocumentReference documento= firebase.collection("Usuario").document(id_correo);
-                    documento.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Snackbar.make(vista, "Este correo ya tiene una cuenta enlazada", Snackbar.LENGTH_LONG).show();
-                            existe= true;
-                        }
-                   }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            existe=false;
-                        }
-                    });
-                }
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                Snackbar.make(vista, "Este correo ya tiene una cuenta enlazada", Snackbar.LENGTH_LONG).show();
+                existe=true;
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        existe= false;
+                        existe=false;
                     }
                 });
     }

@@ -30,6 +30,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
     Clase inicio_sesion
 
@@ -39,6 +43,7 @@ public class Inicio_sesion extends AppCompatActivity {
     String id_correo="";
     FirebaseAuth autenticacion= FirebaseAuth.getInstance();
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
+    Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     /*
     Método onCreate el cual es el encargado de ejecutar el código de la pantalla de iniciar sesión
     una vez se llama a su pantalla desde cualquier parte de la aplicación.
@@ -71,11 +76,19 @@ public class Inicio_sesion extends AppCompatActivity {
                 if(correo.getText().toString().isEmpty()){
                     Snackbar.make(vista,"Debes introducir un correo electrónico", Snackbar.LENGTH_LONG).show();
                 }
-                else if(contraseña.getText().toString().isEmpty()){
-                    Snackbar.make(vista,"Debes introducir una contraseña", Snackbar.LENGTH_LONG).show();
-                }
-                else{
-                    iniciar_Sesion(correo.getText().toString(),contraseña.getText().toString());
+                else {
+                    if(contraseña.getText().toString().isEmpty()) {
+                        Snackbar.make(vista,"Debes introducir una contraseña", Snackbar.LENGTH_LONG).show();
+                    }
+                    else{
+                        Matcher validacion= pattern.matcher(correo.getText().toString());
+                        if(!validacion.find()){
+                            Snackbar.make(vista,"Debes insertar un correo electrónico válido",Snackbar.LENGTH_LONG).show();
+                        }
+                        else{
+                            iniciar_Sesion(correo.getText().toString(),contraseña.getText().toString());
+                        }
+                    }
                 }
             }
         });
