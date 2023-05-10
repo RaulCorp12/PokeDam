@@ -27,7 +27,7 @@ public class Elemento_pokedex extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -48,7 +48,7 @@ public class Elemento_pokedex extends AppCompatActivity {
         TextView tamaño= findViewById(R.id.tamaño_unico_pokemon);
         Button salir= findViewById(R.id.salida_pokemon_unico);
         ConstraintLayout elemento = findViewById(R.id.layout_elemento_pokedex);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             elemento.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

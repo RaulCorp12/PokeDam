@@ -30,7 +30,7 @@ public class Inicio_app extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -42,7 +42,7 @@ public class Inicio_app extends AppCompatActivity {
         BottomNavigationView menu= findViewById(R.id.menu_inicio);
         ImageButton perfil= findViewById(R.id.ver_perfil);
         ConstraintLayout inicio = findViewById(R.id.layout_inicio);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             inicio.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

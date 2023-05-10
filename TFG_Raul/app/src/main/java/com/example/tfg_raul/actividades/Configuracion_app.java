@@ -29,7 +29,7 @@ public class Configuracion_app extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -43,7 +43,7 @@ public class Configuracion_app extends AppCompatActivity {
         Switch modo_oscuro= findViewById(R.id.activar_oscuro);
         Button cerrar_sesion= findViewById(R.id.boton_cerrar_sesion);
 
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             modo_oscuro.setChecked(true);
             configuracion.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }

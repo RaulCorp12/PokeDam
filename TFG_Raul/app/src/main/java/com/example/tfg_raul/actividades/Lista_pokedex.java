@@ -43,7 +43,7 @@ public class Lista_pokedex extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -57,7 +57,7 @@ public class Lista_pokedex extends AppCompatActivity {
         ConstraintLayout pokedex = findViewById(R.id.layout_pokedex);
         List<Pokemon> listado_pokes= new ArrayList<>();
 
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             pokedex.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

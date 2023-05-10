@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
@@ -29,7 +28,7 @@ public class Lista_guias extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -43,7 +42,7 @@ public class Lista_guias extends AppCompatActivity {
         YouTubePlayerView videoCrianza= findViewById(R.id.youtube_player2);
         YouTubePlayerView videoPesca= findViewById(R.id.youtube_player3);
         ConstraintLayout guias = findViewById(R.id.layout_guias);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             guias.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
@@ -88,39 +87,36 @@ public class Lista_guias extends AppCompatActivity {
                 youTubePlayer.cueVideo(id,0);
             }
         }, iFramePlayerOptions);
-        menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            /*
-            Método público onNavigationItemSelected, recibe como parámetro un menú de objetos.
-            Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la pantalla Lista_guias, llamando
-            a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta ella como consecuencia.
-            Devuelve un valor de tipo booleano.
-            */
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        /*
+        Método público onNavigationItemSelected, recibe como parámetro un menú de objetos.
+        Este método es llamado cuando se pulsa uno de los sub-menus de la barra inferior de la pantalla Lista_guias, llamando
+        a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta ella como consecuencia.
+        Devuelve un valor de tipo booleano.
+        */
+        menu.setOnItemSelectedListener(item -> {
 
-                int id= item.getItemId();
-                if(id==R.id.boton_menu_pokedex){
-                    Intent cambio= new Intent(Lista_guias.this, Lista_pokedex.class);
-                    cambio.putExtra("id",id_usu);
-                    startActivity(cambio);
-                }
-                else if(id==R.id.boton_menu_inicio){
-                    Intent cambio= new Intent(Lista_guias.this, Inicio_app.class);
-                    cambio.putExtra("id",id_usu);
-                    startActivity(cambio);
-                }
-                else if(id==R.id.boton_menu_caza){
-                    Intent cambio= new Intent(Lista_guias.this, Lista_cazas.class);
-                    cambio.putExtra("id",id_usu);
-                    startActivity(cambio);
-                }
-                else if(id==R.id.boton_menu_config){
-                    Intent cambio= new Intent(Lista_guias.this, Configuracion_app.class);
-                    cambio.putExtra("id",id_usu);
-                    startActivity(cambio);
-                }
-                return true;
+            int id= item.getItemId();
+            if(id==R.id.boton_menu_pokedex){
+                Intent cambio= new Intent(Lista_guias.this, Lista_pokedex.class);
+                cambio.putExtra("id",id_usu);
+                startActivity(cambio);
             }
+            else if(id==R.id.boton_menu_inicio){
+                Intent cambio= new Intent(Lista_guias.this, Inicio_app.class);
+                cambio.putExtra("id",id_usu);
+                startActivity(cambio);
+            }
+            else if(id==R.id.boton_menu_caza){
+                Intent cambio= new Intent(Lista_guias.this, Lista_cazas.class);
+                cambio.putExtra("id",id_usu);
+                startActivity(cambio);
+            }
+            else if(id==R.id.boton_menu_config){
+                Intent cambio= new Intent(Lista_guias.this, Configuracion_app.class);
+                cambio.putExtra("id",id_usu);
+                startActivity(cambio);
+            }
+            return true;
         });
     }
     /*

@@ -49,7 +49,7 @@ public class Crear_caza extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -66,7 +66,7 @@ public class Crear_caza extends AppCompatActivity {
         List<Pokemon> listado_pokes= new ArrayList<>();
         List<String> nombres= new ArrayList<>();
         cazas = findViewById(R.id.layout_crear_cazas);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             cazas.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {

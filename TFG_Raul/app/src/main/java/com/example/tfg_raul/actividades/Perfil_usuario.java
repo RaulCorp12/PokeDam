@@ -36,7 +36,7 @@ public class Perfil_usuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferencia= new Preferencias(this);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             setTheme(R.style.Theme_TFG_Raul_dark);
         }
         else {
@@ -51,7 +51,7 @@ public class Perfil_usuario extends AppCompatActivity {
         Button volver= findViewById(R.id.salida_pefil);
         View vista= findViewById(R.id.layout_perfil);
         ConstraintLayout perfil = findViewById(R.id.layout_perfil);
-        if(preferencia.cargar_modo_noche()){
+        if(preferencia.estado_modo_noche()){
             perfil.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
