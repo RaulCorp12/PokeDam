@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,8 +39,6 @@ import java.util.regex.Pattern;
 public class Crear_cuenta extends AppCompatActivity {
     FirebaseFirestore firebase= FirebaseFirestore.getInstance();
     FirebaseAuth autenticacion= FirebaseAuth.getInstance();
-    String id_correo="";
-    boolean existe;
     Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
     /*
     Método protected onCreate el cual se encargada de ejecutar el código de la pantalla llamada Crear_cuenta
@@ -92,10 +91,7 @@ public class Crear_cuenta extends AppCompatActivity {
                                     Snackbar.make(vista, "La contraseña debe de tener 8 o más dígitos en total", Snackbar.LENGTH_LONG).show();
                                 }
                                 else{
-                                    recuperarId(correo.getText().toString());
-                                    if(existe=false){
-                                        guardarUsuario(nombre.getText().toString(), correo.getText().toString(), contraseña.getText().toString());
-                                    }
+                                    recuperarId(correo.getText().toString(),  nombre.getText().toString(), contraseña.getText().toString());
                                 }
                             }
                         }
@@ -139,22 +135,22 @@ public class Crear_cuenta extends AppCompatActivity {
     para comprobar si la cuenta ya existe en la base de datos.
     No devuelve ningun valor.
     */
-    public void recuperarId(String correo_recup){
+    public void recuperarId(String correo, String nombre, String contraseña){
         View vista= findViewById(R.id.pantalla_crear_cuenta);
-        CollectionReference collectionReference = firebase.collection("Usuario");
-        Query sentencia= collectionReference.whereEqualTo("correo", correo_recup);
-        sentencia.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        autenticacion.fetchSignInMethodsForEmail(correo).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                Snackbar.make(vista, "Este correo ya tiene una cuenta enlazada", Snackbar.LENGTH_LONG).show();
-                existe=true;
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        existe=false;
+            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                if (task.isSuccessful()){
+                    boolean existe= !task.getResult().getSignInMethods().isEmpty();
+
+                    if(existe){
+                        Snackbar.make(vista, "La cuenta ya existe",Snackbar.LENGTH_LONG).show();
                     }
-                });
+                    else if(!existe){
+                        guardarUsuario(nombre, correo, contraseña);
+                    }
+                }
+            }
+        });
     }
 }
