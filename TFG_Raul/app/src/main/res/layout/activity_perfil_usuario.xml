@@ -135,6 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="19dp"
+            android:text="No disponible temporalmente"
             android:editable="false"
             android:fontFamily="@font/roboto_condensed"
             android:textColor="?android:textColorPrimary">
