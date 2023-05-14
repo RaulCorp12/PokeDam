@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.tfg_raul.R;
 import com.example.tfg_raul.utilidades.Preferencias;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
@@ -93,30 +95,32 @@ public class Lista_guias extends AppCompatActivity {
         a su correspondiente pantalla dependiendo del botón que sea pulsado, navegando hasta ella como consecuencia.
         Devuelve un valor de tipo booleano.
         */
-        menu.setOnItemSelectedListener(item -> {
-
-            int id= item.getItemId();
-            if(id==R.id.boton_menu_pokedex){
-                Intent cambio= new Intent(Lista_guias.this, Lista_pokedex.class);
-                cambio.putExtra("id",id_usu);
-                startActivity(cambio);
+        menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id= item.getItemId();
+                if(id==R.id.boton_menu_pokedex){
+                    Intent cambio= new Intent(Lista_guias.this, Lista_pokedex.class);
+                    cambio.putExtra("id",id_usu);
+                    startActivity(cambio);
+                }
+                else if(id==R.id.boton_menu_inicio){
+                    Intent cambio= new Intent(Lista_guias.this, Inicio_app.class);
+                    cambio.putExtra("id",id_usu);
+                    startActivity(cambio);
+                }
+                else if(id==R.id.boton_menu_caza){
+                    Intent cambio= new Intent(Lista_guias.this, Lista_cazas.class);
+                    cambio.putExtra("id",id_usu);
+                    startActivity(cambio);
+                }
+                else if(id==R.id.boton_menu_config){
+                    Intent cambio= new Intent(Lista_guias.this, Configuracion_app.class);
+                    cambio.putExtra("id",id_usu);
+                    startActivity(cambio);
+                }
+                return true;
             }
-            else if(id==R.id.boton_menu_inicio){
-                Intent cambio= new Intent(Lista_guias.this, Inicio_app.class);
-                cambio.putExtra("id",id_usu);
-                startActivity(cambio);
-            }
-            else if(id==R.id.boton_menu_caza){
-                Intent cambio= new Intent(Lista_guias.this, Lista_cazas.class);
-                cambio.putExtra("id",id_usu);
-                startActivity(cambio);
-            }
-            else if(id==R.id.boton_menu_config){
-                Intent cambio= new Intent(Lista_guias.this, Configuracion_app.class);
-                cambio.putExtra("id",id_usu);
-                startActivity(cambio);
-            }
-            return true;
         });
     }
     /*

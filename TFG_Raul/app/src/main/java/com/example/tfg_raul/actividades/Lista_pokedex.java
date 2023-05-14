@@ -49,21 +49,18 @@ public class Lista_pokedex extends AppCompatActivity {
         else {
             setTheme(R.style.Theme_TFG_Raul);
         }
-
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_lista_pokedex);
         BottomNavigationView menu= findViewById(R.id.menu_pokedex);
         ConstraintLayout pokedex = findViewById(R.id.layout_pokedex);
         List<Pokemon> listado_pokes= new ArrayList<>();
-
         if(preferencia.estado_modo_noche()){
             pokedex.setBackground(getResources().getDrawable(R.drawable.fondo_dark));
         }
         else {
             pokedex.setBackground(getResources().getDrawable(R.drawable.fondo));
         }
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
 
@@ -120,9 +117,7 @@ public class Lista_pokedex extends AppCompatActivity {
             */
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 int id= item.getItemId();
-
                 if(id==R.id.boton_menu_inicio){
                     Intent cambio= new Intent(Lista_pokedex.this, Inicio_app.class);
                     cambio.putExtra("id",id_usu);

@@ -161,11 +161,23 @@ public class Elemento_caza extends AppCompatActivity {
         CollectionReference collectionReference = firebaseID.collection("Caza");
         Query sentencia= collectionReference.whereEqualTo("id_caza", id_caza);
         sentencia.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            /*
+            Método público onComplete. Recibe como parámetro un listado de tareas.
+            Este método es llamado cuendo se logra acceder al documento que representa las cazas
+            de pokemon en la base de datos.
+            No devuelve ningun valor.
+            */
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot id : task.getResult()) {
                     DocumentReference documento= firebaseID.collection("Caza").document(id.getId());
                     documento.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        /*
+                        Método público onComplete. Recibe como parámetro un listado de tareas.
+                        Este método es llamado cuendo se logra acceder al documento que representa las cazas
+                        de pokemon en la base de datos.
+                        No devuelve ningun valor.
+                        */
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             Map<String, Object> actualizacion= new HashMap<>();
@@ -178,6 +190,12 @@ public class Elemento_caza extends AppCompatActivity {
                             startActivity(cambio);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
+                        /*
+                        Método onFailure. Recibe como parámetro un objeto de tipo Exception.
+                        Este método es llamado cuendo no se consigue insertar correctamente la caza en la
+                        base de datos.
+                        No devuelve ningun valor.
+                        */
                         @Override
                         public void onFailure(@NonNull Exception e) {
                         }
@@ -186,6 +204,12 @@ public class Elemento_caza extends AppCompatActivity {
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
+                    /*
+                    Método onFailure. Recibe como parámetro un objeto de tipo Exception.
+                    Este método es llamado cuendo no se logra acceder al documento que representa las cazas
+                    de pokemon en la base de datos.
+                    No devuelve ningun valor.
+                    */
                     @Override
                     public void onFailure(@NonNull Exception e) {
                     }

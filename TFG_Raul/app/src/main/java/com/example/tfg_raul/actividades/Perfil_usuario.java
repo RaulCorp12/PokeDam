@@ -57,7 +57,6 @@ public class Perfil_usuario extends AppCompatActivity {
         else {
             perfil.setBackground(getResources().getDrawable(R.drawable.fondo));
         }
-
         Bundle datos= getIntent().getExtras();
         String id_usu= datos.getString("id");
 

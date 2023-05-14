@@ -117,6 +117,12 @@ public class Crear_cuenta extends AppCompatActivity {
                 .add(usuario)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
+                    /*
+                    Método onSuccess. Recibe como parámetro un objeto de tipo DocumentReference.
+                    Este método es llamado cuando se consigue insertar al usuario en la base de datos
+                    de forma correcta.
+                    No devuelve ningun valor.
+                    */
                     public void onSuccess(DocumentReference documentReference) {
                         Intent cambio= new Intent(Crear_cuenta.this, Inicio_sesion.class);
                         startActivity(cambio);
@@ -124,13 +130,19 @@ public class Crear_cuenta extends AppCompatActivity {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
+                    /*
+                    Método onFailure. Recibe como parámetro un objeto de tipo Exception.
+                    Este método es llamado cuando no se consigue insertar al usuario en la base de datos
+                    de forma correcta.
+                    No devuelve ningun valor.
+                    */
                     public void onFailure(@NonNull Exception e) {
                         Snackbar.make(vista,"No se pudo crear la cuenta",Snackbar.LENGTH_LONG).show();
                     }
                 });
     }
     /*
-    Método recuperar_id. Recibe como parámetro el correo electrónico del usuario.
+    Método público recuperar_id. Recibe como parámetro el correo electrónico del usuario.
     Este método intenta recuperar de la base de datos la id del documento que contenga el correo electrónico del usuario pasado como parámetro
     para comprobar si la cuenta ya existe en la base de datos.
     No devuelve ningun valor.
@@ -139,12 +151,18 @@ public class Crear_cuenta extends AppCompatActivity {
         View vista= findViewById(R.id.pantalla_crear_cuenta);
         autenticacion.fetchSignInMethodsForEmail(correo).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
+            /*
+            Método público onComplete. Recibe como parámetro un listado de tareas.
+            Este método es llamado cuendo se logra validar la correcta busqueda de un usuario en el módulo de
+            autenticación de la base de datos.
+            No devuelve ningun valor.
+            */
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                 if (task.isSuccessful()){
                     boolean existe= !task.getResult().getSignInMethods().isEmpty();
 
                     if(existe){
-                        Snackbar.make(vista, "La cuenta ya existe",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(vista, "Ya existe una cuenta con este correo",Snackbar.LENGTH_LONG).show();
                     }
                     else if(!existe){
                         guardarUsuario(nombre, correo, contraseña);
